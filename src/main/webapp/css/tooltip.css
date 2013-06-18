@@ -1,0 +1,127 @@
+.tooltipActionsTable {
+position:relative; /* make span relative to anchor */
+text-decoration:none; /* no underline */
+cursor:pointer; /* make cursor point */
+}
+
+.tooltipActionsTable span { /* main body of tooltip */
+position:absolute; /* AP it */
+bottom:66px; /* FADE IN/OUT BEGIN */
+left:30%; /* CENTER TOOLTIP */
+margin-left:-72px; /* CENTER TOOLTIP */
+width:130px; /* tootip width */
+opacity:0; /* HIDE TOOLTIP in modern browsers */
+visibility:hidden; /* HIDE TOOLTIP in IE */
+padding:10px 5px; /* padding */
+color:#fff; /* text color */
+font:bold 75%/1.5 Arial, Helvetica, sans-serif; /* font */
+text-align:center; /* center text */
+pointer-events:none; /* no unintended tooltip popup for modern browsers */
+border-radius:6px; /* round corners */
+text-shadow:1px 1px 2px rgba(0, 0, 0, 0.6); /* text shadow */
+background:#77BACE; /* IE6/7/8 */
+background:#77BACE; /* modern browsers */
+border:2px solid rgb(255,255,255); /* IE6/7/8 */
+border:2px solid rgba(255,255,255,.8); /* modern browsers */
+box-shadow:0px 2px 4px rgba(0,0,0,0.5); /* shadow */
+-webkit-transition:all 0.3s ease-in-out; /* animate tooltip */
+-moz-transition:all 0.3s ease-in-out; /* animate tooltip */
+-o-transition:all 0.3s ease-in-out; /* animate tooltip */
+-ms-transition:all 0.3s ease-in-out; /* animate tooltip */
+transition:all 0.3s ease-in-out; /* animate tooltip */
+}
+.tooltipActionsTable span.dif { /* different width tooltip */
+width:190px; /* width */
+margin-left:-102px; /* center it */
+}
+.tooltipActionsTable span:before, .tooltipActionsTable span:after { /* bottom triangle - the white border */
+content:''; /* add html content */
+position:absolute; /* AP bottom triangle */
+bottom:-13px; /* position bottom triangle */
+left:50%; /* center bottom triangle */
+margin-left:-12px; /* center bottom triangle */
+border-left:12px solid transparent; /* build bottom triangle */
+border-right:12px solid transparent; /* build bottom triangle */
+border-top:12px solid rgb(255,255,255); /* build bottom triangle IE6/7/8 */
+border-top:12px solid rgba(255,255,255,.8); /* build bottom triangle modern browsers */
+}
+.tooltipActionsTable span:after { /* top triangle - the blue background */
+bottom:-10px; /* position top triangle */
+margin-left:-10px; /* center top triangle */
+border-width:10px; /* build top triangle */
+border-top:10px solid #77BACE; /* build top triangle IE6/7/8 */
+border-top:10px solid #77BACE; /* build top triangle modern browsers */
+}
+.tooltipActionsTable:hover span { /* reveal tooltip */
+opacity:1; /* REVEAL TOOLTIP in modern browsers */
+bottom:44px; /* FADE IN/OUT END */
+visibility:visible; /* REVEAL TOOLTIP in IE */
+}
+.tooltipActionsTable span:hover {
+visibility:hidden; /* hide tooltip when moving from link to span in IE */
+}
+@media screen and (min-device-width:320px) and (max-device-width:768px) {.tooltipActionsTable span{display:none;}.tooltip:hover span{display:block;} } /* iPad & iPhone simulate :hover */
+
+.tooltipActions {
+position:relative; /* make span relative to anchor */
+text-decoration:none; /* no underline */
+cursor:pointer; /* make cursor point */
+}
+
+.tooltipActions span { /* main body of tooltip */
+position:absolute; /* AP it */
+bottom:66px; /* FADE IN/OUT BEGIN */
+left:76%; /* CENTER TOOLTIP */
+margin-left:-72px; /* CENTER TOOLTIP */
+width:130px; /* tootip width */
+opacity:0; /* HIDE TOOLTIP in modern browsers */
+visibility:hidden; /* HIDE TOOLTIP in IE */
+padding:10px 5px; /* padding */
+color:#fff; /* text color */
+font:bold 75%/1.5 Arial, Helvetica, sans-serif; /* font */
+text-align:center; /* center text */
+pointer-events:none; /* no unintended tooltip popup for modern browsers */
+border-radius:6px; /* round corners */
+text-shadow:1px 1px 2px rgba(0, 0, 0, 0.6); /* text shadow */
+background:#77BACE; /* IE6/7/8 */
+background:#77BACE; /* modern browsers */
+border:2px solid rgb(255,255,255); /* IE6/7/8 */
+border:2px solid rgba(255,255,255,.8); /* modern browsers */
+box-shadow:0px 2px 4px rgba(0,0,0,0.5); /* shadow */
+-webkit-transition:all 0.3s ease-in-out; /* animate tooltip */
+-moz-transition:all 0.3s ease-in-out; /* animate tooltip */
+-o-transition:all 0.3s ease-in-out; /* animate tooltip */
+-ms-transition:all 0.3s ease-in-out; /* animate tooltip */
+transition:all 0.3s ease-in-out; /* animate tooltip */
+}
+.tooltipActions span.dif { /* different width tooltip */
+width:190px; /* width */
+margin-left:-102px; /* center it */
+}
+.tooltipActions span:before, .tooltipActions span:after { /* bottom triangle - the white border */
+content:''; /* add html content */
+position:absolute; /* AP bottom triangle */
+bottom:-13px; /* position bottom triangle */
+left:50%; /* center bottom triangle */
+margin-left:-12px; /* center bottom triangle */
+border-left:12px solid transparent; /* build bottom triangle */
+border-right:12px solid transparent; /* build bottom triangle */
+border-top:12px solid rgb(255,255,255); /* build bottom triangle IE6/7/8 */
+border-top:12px solid rgba(255,255,255,.8); /* build bottom triangle modern browsers */
+}
+.tooltipActions span:after { /* top triangle - the blue background */
+bottom:-10px; /* position top triangle */
+margin-left:-10px; /* center top triangle */
+border-width:10px; /* build top triangle */
+border-top:10px solid #77BACE; /* build top triangle IE6/7/8 */
+border-top:10px solid #77BACE; /* build top triangle modern browsers */
+}
+.tooltipActions:hover span { /* reveal tooltip */
+opacity:1; /* REVEAL TOOLTIP in modern browsers */
+bottom:44px; /* FADE IN/OUT END */
+visibility:visible; /* REVEAL TOOLTIP in IE */
+}
+.tooltipActions span:hover {
+visibility:hidden; /* hide tooltip when moving from link to span in IE */
+}
+@media screen and (min-device-width:320px) and (max-device-width:768px) {.tooltipActions span{display:none;}.tooltip:hover span{display:block;} } /* iPad & iPhone simulate :hover */
