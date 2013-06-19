@@ -34,8 +34,8 @@
         -->
 
         <!-- A dependency on either JUnit or TestNG is required, or the surefire plugin (which runs the tests)
-will fail, preventing Maven from packaging the WAR. Tapestry includes a large number
-of testing facilities designed for use with TestNG (http://testng.org/), so it's recommended. -->
+        will fail, preventing Maven from packaging the WAR. Tapestry includes a large number
+        of testing facilities designed for use with TestNG (http://testng.org/), so it's recommended. -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -58,7 +58,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
         </dependency>
 
         <!-- Provided by the servlet container, but sometimes referenced in the application
-       code. -->
+        code. -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -73,7 +73,11 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <version>${tapestry-release-version}</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.lltyk</groupId>
+            <artifactId>tapestry5-jquery</artifactId>
+            <version>3.2.1</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>smartcards</finalName>
@@ -110,7 +114,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
                     <!-- Log to the console. -->
                     <requestLog implementation="org.mortbay.jetty.NCSARequestLog">
                         <!-- This doesn't do anything for Jetty, but is a workaround for a Maven bug
-                             that prevents the requestLog from being set. -->
+                        that prevents the requestLog from being set. -->
                         <append>true</append>
                     </requestLog>
                     <systemProperties>
@@ -137,7 +141,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
     <repositories>
 
         <!-- This repository is only needed when the Tapestry version is a preview release, rather
-             than a final release. -->
+        than a final release. -->
         <repository>
             <id>apache-staging</id>
             <url>https://repository.apache.org/content/groups/staging/</url>
@@ -150,5 +154,6 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
         <testng-release-version>5.14.10</testng-release-version>
         <easymock-release-version>3.0</easymock-release-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
     </properties>
 </project>

@@ -1,0 +1,57 @@
+<html title="Login to admin panel"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <head>
+
+        <!--META-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Login Form</title>
+
+    </head>
+    <body>
+
+        <!--WRAPPER-->
+        <div id="wrapper">
+
+            <!--SLIDE-IN ICONS-->
+            <div class="user-icon"></div>
+            <div class="pass-icon"></div>
+            <!--END SLIDE-IN ICONS-->
+
+            <!--LOGIN FORM-->
+            <t:form t:id="loginForm" name="login-form" class="login-form" action="" method="post">
+                <t:errors/>
+                <!--HEADER-->
+                <div class="header">
+                    <!--TITLE--><h1>Login</h1><!--END TITLE-->
+                    <!--DESCRIPTION--><span>Enter your username and password to access admin panel.</span><!--END DESCRIPTION-->
+                </div>
+                <!--END HEADER-->
+                
+                <!--CONTENT-->
+                <div class="content">
+                    <!--USERNAME--><t:label for="username"  >Username</t:label>
+				<t:textfield t:id="username" class="input username" title="Enter your username" onfocus="this.value = ''" /><!--END USERNAME-->
+                    <!--PASSWORD--><t:label for="password"  >Password</t:label>
+				<t:textfield t:id="password" class="input password" title="Enter your password" onfocus="this.value = ''" /><!--END PASSWORD-->
+                </div>
+                <!--END CONTENT-->
+
+                <!--FOOTER-->
+                <div class="footer">
+                    <!--LOGIN BUTTON--><t:submit t:id="submit" value="login" class="button"  title="Login" /><!--END LOGIN BUTTON-->
+                </div>
+                <!--END FOOTER-->
+
+            </t:form>
+            <!--END LOGIN FORM-->
+
+        </div>
+        <!--END WRAPPER-->
+
+        <!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
+
+    </body>
+
+</html>

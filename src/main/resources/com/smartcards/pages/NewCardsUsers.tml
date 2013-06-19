@@ -1,0 +1,197 @@
+<html t:type="adminborder" title="About smartcards"
+      t:pageTitle="${message:pageTitle}"
+      t:tabTitle="${message:tabTitle}"
+      t:breadcrumb="${message:breadcrumb}"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <section id="main" class="column">
+
+        <article class="module width_full">
+            <header><h3 class="tabs_involved">New notifications</h3>
+                <ul class="tabs">
+                    <li><a  href="#tab1">New Cards</a></li>
+                    <li><a href="#tab2">New Users</a></li>
+                </ul>
+            </header>
+
+            <div class="tab_container">
+                <div id="tab1" class="tab_content">
+                    <table class="tablesorter" cellspacing="0"> 
+                        <thead> 
+                            <tr> 
+                                <th></th> 
+                                <th>Card Question</th> 
+                                <th>Card Answer</th> 
+                                <th>Created On</th> 
+                                <th>Actions</th> 
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Lorem Ipsum Dolor Sit Amet</td> 
+                                <td>Articles</td> 
+                                <td>5th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr> 
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Ipsum Lorem Dolor Sit Amet</td> 
+                                <td>Freebies</td> 
+                                <td>6th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr>
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Sit Amet Dolor Ipsum</td> 
+                                <td>Tutorials</td> 
+                                <td>10th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr> 
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Dolor Lorem Amet</td> 
+                                <td>Articles</td> 
+                                <td>16th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr>
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Dolor Lorem Amet</td> 
+                                <td>Articles</td> 
+                                <td>16th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr>  
+                        </tbody> 
+                    </table>
+                </div> 
+                <!--                    end of #tab1 -->
+
+                <div id="tab2" class="tab_content">
+                    <table class="tablesorter" cellspacing="0"> 
+                        <thead> 
+                            <tr> 
+                                <th></th> 
+                                <th>First name</th> 
+                                <th>Last name</th> 
+                                <th>Email</th> 
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Daily counter</th>
+                                <th>Last date logged in</th>
+                                <th>Action</th>
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Lorem Ipsum Dolor Sit Amet</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr> 
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Lorem Ipsum Dolor Sit Amet</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr>
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Lorem Ipsum Dolor Sit Amet</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr> 
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Lorem Ipsum Dolor Sit Amet</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr> 
+                            <tr> 
+                                <td><input type="checkbox"/></td> 
+                                <td>Lorem Ipsum Dolor Sit Amet</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>Mark Corrigan</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td>5th April 2011</td> 
+                                <td><a class="tooltipActionsTable"><input type="image" src="${context:images/icn_edit.png}"/><span>Edit</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_trash.png}"/><span>Trash</span></a>
+                                    <a class="tooltipActionsTable"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove"/><span>Aprove</span></a>
+                                </td> 
+                            </tr> 
+                        </tbody> 
+                    </table>
+
+                </div> 
+                <!--end of #tab2 -->
+
+            </div> 
+            <!--end of .tab_container--> 
+            <footer>
+                <center>
+                    <a class="tooltipActions"><input type="image" src="${context:images/icn_edit.png}" title="Edit" class="actions"/><span>Edit selected</span></a>
+                    <a class="tooltipActions"><input type="image" src="${context:images/icn_trash.png}" title="Trash" class="actions"/><span>Trash selected</span></a>
+                    <a class="tooltipActions"><input type="image" src="${context:images/icn_alert_success.png}" title="Aprove" class="actions"/><span>Aprove selected</span></a>
+                </center>
+            </footer>
+        </article> 
+        <!--end of content manager article--> 
+
+        <div class="clear"></div>
+
+        <div class="spacer"></div>
+
+
+    </section>
+
+</html>
