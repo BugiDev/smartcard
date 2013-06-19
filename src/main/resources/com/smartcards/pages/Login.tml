@@ -1,4 +1,4 @@
-<html title="Login to admin panel"
+<html 
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
@@ -18,7 +18,7 @@
             <div class="user-icon"></div>
             <div class="pass-icon"></div>
             <!--END SLIDE-IN ICONS-->
-
+            
             <!--LOGIN FORM-->
             <t:form t:id="loginForm" name="login-form" class="login-form" action="" method="post">
                 <t:errors/>
@@ -31,9 +31,9 @@
                 
                 <!--CONTENT-->
                 <div class="content">
-                    <!--USERNAME--><t:label for="username"  >Username</t:label>
+                    <!--USERNAME-->
 				<t:textfield t:id="username" class="input username" title="Enter your username" onfocus="this.value = ''" /><!--END USERNAME-->
-                    <!--PASSWORD--><t:label for="password"  >Password</t:label>
+                    <!--PASSWORD-->
 				<t:textfield t:id="password" class="input password" title="Enter your password" onfocus="this.value = ''" /><!--END PASSWORD-->
                 </div>
                 <!--END CONTENT-->

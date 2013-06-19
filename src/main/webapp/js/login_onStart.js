@@ -13,9 +13,20 @@ $(document).ready(function() {
     });
 
     $(".password").focus(function() {
+        if ($(".tjq-error-popup:first").css('display') === "none") {
+            
+            $(".pass-icon").css("top", "221px");
+        } else {
+            $(".pass-icon").css("top", "273px");
+        }
         $(".pass-icon").css("left", "-48px");
     });
     $(".password").blur(function() {
+         if ($(".tjq-error-popup:first").css('display') === "none") {
+            $(".pass-icon").css("top", "221px");
+        } else {
+            $(".pass-icon").css("top", "273px");
+        }
         $(".pass-icon").css("left", "0px");
     });
 });
