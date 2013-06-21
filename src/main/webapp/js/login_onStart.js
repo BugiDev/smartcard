@@ -13,7 +13,7 @@ $(document).ready(function() {
     });
 
     $(".password").focus(function() {
-        if ($(".tjq-error-popup:first").css('display') === "none") {
+        if ($(".tjq-error-popup:first").css('display') === "none" || !$(".tjq-error-popup:first")[0]) {
             
             $(".pass-icon").css("top", "221px");
         } else {
@@ -22,7 +22,7 @@ $(document).ready(function() {
         $(".pass-icon").css("left", "-48px");
     });
     $(".password").blur(function() {
-         if ($(".tjq-error-popup:first").css('display') === "none") {
+         if ($(".tjq-error-popup:first").css('display') === "none" || !$(".tjq-error-popup:first")[0]) {
             $(".pass-icon").css("top", "221px");
         } else {
             $(".pass-icon").css("top", "273px");
