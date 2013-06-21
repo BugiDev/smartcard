@@ -51,7 +51,7 @@ public class User implements Serializable {
     private int roleType;
     @Basic(optional = false)
     @Column(name = "User_confirmed")
-    private String userConfirmed;
+    private boolean userConfirmed;
     @Basic(optional = false)
     @Column(name = "Daily_counter")
     private int dailyCounter;
@@ -208,14 +208,14 @@ public class User implements Serializable {
     /**
      * @return the userConfirmed
      */
-    public String getUserConfirmed() {
+    public boolean getUserConfirmed() {
         return userConfirmed;
     }
 
     /**
      * @param userConfirmed the userConfirmed to set
      */
-    public void setUserConfirmed(String userConfirmed) {
+    public void setUserConfirmed(boolean userConfirmed) {
         this.userConfirmed = userConfirmed;
     }
 

@@ -2,16 +2,21 @@ package com.smartcards.pages;
 
 import com.smartcards.entities.User;
 import java.util.List;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -40,19 +45,38 @@ public class Login {
     private NewCardsUsers newCardsUsers;
     @Component(id = "loginForm")
     private Form form;
+    @InjectComponent
+    private Zone loginErrorResponse;
+    @Inject
+    private Messages messages;
+    @Property
+    private String loginErrorMessage;
+    @Inject
+    private Request request;
+    @Inject
+    private Block loginErrorBlock;
 
-    public NewCardsUsers onSubmit() {
-        logger.debug("Username = "+username);
-        logger.debug("Password = "+password);
+    public Object onSubmit() {
+        loginErrorMessage = "";
+        logger.debug("Username = " + username);
+        logger.debug("Password = " + password);
         List resaultList = hibernate.createCriteria(User.class).add(Restrictions.eq("username", username)).add(Restrictions.eq("password", password)).add(Restrictions.eq("userActive", true)).list();
         logger.debug(resaultList.toString());
         if (resaultList.size() > 0) {
             User tempUser = (User) resaultList.get(0);
-            logger.debug(tempUser.getUsername()+" "+tempUser.getPassword());
-            asoUser = tempUser;
+            logger.debug(tempUser.getUsername() + " " + tempUser.getPassword());
+
+            if (tempUser.getUserConfirmed()) {
+                asoUser = tempUser;
+                return newCardsUsers;
+            } else {
+                loginErrorMessage = messages.get("userNotConfirmed");
+                return loginErrorBlock;
+            }
+
+        } else {
+            loginErrorMessage = messages.get("loginFail");
+            return loginErrorBlock;
         }
-        return newCardsUsers;
     }
-
-
 }

@@ -28,5 +28,5 @@ $(document).ready(function() {
             $(".pass-icon").css("top", "273px");
         }
         $(".pass-icon").css("left", "0px");
-    });
+    });    
 });

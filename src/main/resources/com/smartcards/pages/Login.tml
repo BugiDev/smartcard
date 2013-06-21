@@ -1,6 +1,6 @@
 <html 
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-      xmlns:p="tapestry:parameter">
+    xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter">
 
     <head>
 
@@ -18,40 +18,47 @@
             <div class="user-icon"></div>
             <div class="pass-icon"></div>
             <!--END SLIDE-IN ICONS-->
-            
+
             <!--LOGIN FORM-->
-            <t:form t:id="loginForm" name="login-form" class="login-form" action="" method="post">
+            <t:form t:id="loginForm" name="login-form" class="login-form" action="" method="post" t:zone="loginErrorResponse">
                 <t:errors/>
                 <!--HEADER-->
                 <div class="header">
                     <!--TITLE--><h1>Login</h1><!--END TITLE-->
                     <!--DESCRIPTION--><span>Enter your username and password to access admin panel.</span><!--END DESCRIPTION-->
+
                 </div>
                 <!--END HEADER-->
-                
+
                 <!--CONTENT-->
                 <div class="content">
                     <!--USERNAME-->
-				<t:textfield t:id="username" class="input username" title="Enter your username" onfocus="this.value = ''" /><!--END USERNAME-->
+                    <t:textfield t:id="username" class="input username" title="Enter your username" onfocus="this.value = ''" /><!--END USERNAME-->
                     <!--PASSWORD-->
-				<t:textfield t:id="password" class="input password" title="Enter your password" onfocus="this.value = ''" /><!--END PASSWORD-->
+                    <t:textfield t:id="password" class="input password" title="Enter your password" onfocus="this.value = ''" /><!--END PASSWORD-->
                 </div>
                 <!--END CONTENT-->
 
                 <!--FOOTER-->
-                <div class="footer">
+                <div class="footer"> 
+                    <span class="forgotPass"><a href="#">Forgot you password?</a></span>
                     <!--LOGIN BUTTON--><t:submit t:id="submit" value="login" class="button"  title="Login" /><!--END LOGIN BUTTON-->
                 </div>
                 <!--END FOOTER-->
 
             </t:form>
-            <!--END LOGIN FORM-->
-
+            <!--END LOGIN FORM--> 
+            <t:zone t:id="loginErrorResponse" t:update="show">
+                <t:block t:id="loginErrorBlock">
+                <div class="loginError">${loginErrorMessage}</div>
+                </t:block>
+            </t:zone>
         </div>
         <!--END WRAPPER-->
 
         <!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
 
     </body>
-
+ 
 </html>
+ 
