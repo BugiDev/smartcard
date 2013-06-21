@@ -5,6 +5,7 @@
 
 
 $("#btn-left").on("click",function(e){
+    alert("nesto");
         $(".flipbox").flippy({
             color_target: "red",
             direction: "left",
