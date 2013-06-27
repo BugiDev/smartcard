@@ -46,9 +46,11 @@
                     </div>
 
                 </div>
-            </div>
+            </div> 
             <footer>
-                <a class="btn" id="btn-left" href="#">Left</a>
+                <div class="submit_link">
+                <span class="btn btn_turn" id="btn-turn" href="#">Turn</span>
+                </div>
             </footer>
         </article><!-- end of post new article -->
 

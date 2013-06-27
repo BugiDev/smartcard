@@ -4,14 +4,30 @@
  */
 
 $(function() {
-    $("#btn-left").on("click", function(e) {
-        alert("nesto");
+    
+    var turnRotator = false;
+    
+    
+    
+    $("#btn-turn").on("click", function(e) {
+        
+        if (!turnRotator){
         $(".flipbox").flippy({
-            color_target: "red",
-            direction: "left",
+            color_target: "",
+            direction: "top",
             duration: "750",
-            verso: "<span>Woohoo ! \\o/</span>"
+            verso: "<span>Gore</span>"
         });
+        turnRotator = true;
+    }else{
+        $(".flipbox").flippy({
+            color_target: "",
+            direction: "bottom",
+            duration: "750",
+            verso: "<span>Dole</span>"
+        });
+        turnRotator = false;
+    }          
         e.preventDefault();
     });
 });
