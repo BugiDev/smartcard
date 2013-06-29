@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Bogdan Begovic
  */
-@Import(stylesheet = {"context:css/shCore.css"}, library = {"context:js/jquery.min.js", "context:js/jquery.flippy.min.js"})
+@Import(stylesheet = {"context:css/shCore.css", "context:css/cardStyle.css"}, library = {"context:js/jquery.min.js", "context:js/jquery.flippy.min.js"})
 public class AddNewCard {
 
     private Logger logger = LoggerFactory.getLogger(Login.class);

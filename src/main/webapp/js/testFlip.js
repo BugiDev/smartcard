@@ -15,7 +15,7 @@ $("#btn-turn").on("click", function(e) {
             color_target: "",
             direction: "top",
             duration: "750",
-            verso: "<span class='cardTextSelectorQuestion'>" + cardQuestion + "</span>"
+            verso: "<center><div class='cardHead'>Card Question</div><br/><div class='cardTextSelectorQuestion'>" + cardQuestion + "</div></center>"
         });
         turnRotator = true;
     } else {
@@ -23,7 +23,7 @@ $("#btn-turn").on("click", function(e) {
             color_target: "",
             direction: "bottom",
             duration: "750",
-            verso: "<span class='cardTextSelectorAnswer'>" + cardAnswer + "</span>"
+            verso: "<center><div class='cardHead'>Card Answer</div><br/><div class='cardTextSelectorAnswer'>" + cardAnswer + "</div></center>"
         });
         turnRotator = false;
     }
@@ -31,12 +31,13 @@ $("#btn-turn").on("click", function(e) {
 });
 
 $(".alt_btn_preview").on("click", function(e) {
-    alert("radi prew");
-        if (!turnRotator) {
-        $(".cardTextSelectorQuestion").text( $('.cardQuestionPlace').text());
+    
+        if (turnRotator) {
+        	var asd = $('#cardQuestion').val();
+        $(".cardTextSelectorQuestion").text(asd);
     } else {
-       $(".cardTextSelectorAnswer").text($('.cardAnswerPlace').text());
+    	var bsd = $('#cardAnswer').val();
+       $(".cardTextSelectorAnswer").text(bsd);
     }
-
    
 });

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+.cardHead{
+	
+	padding-top: 25px;
+	color: #4C4C4C;
+	font-size: 16px;
+	
+}
+
+.cardTextSelectorQuestion{
+	width: inherit;
+	padding: 30px;
+	font-size: 17px;
+	color: #4C4C4C;
+	text-align: justify;
+	padding-top: 60px;
+	word-wrap: break-word;
+}
+
+.cardTextSelectorAnswer{
+	width: inherit;
+	padding: 30px;
+	font-size: 17px;
+	color: #4C4C4C;
+	text-align: justify;
+	padding-top: 60px;
+	word-wrap: break-word;
+}
+
+.cardStart{
+	
+	color: #4C4C4C;
+	font-size: 16px;
+	padding:30px;
+	padding-top: 120px;
+	text-align: justify;
+	
+}

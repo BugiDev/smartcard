@@ -21,13 +21,13 @@
                         <t:textarea t:id="cardAnswer" size="10" row="8" validate="required"/>
                     </fieldset>
                     <fieldset style="width:48%; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
-                        <span><t:label for="cardAnswer"/></span>
+                        <span><t:label for="selectCategory"/></span>
                         <t:select t:id="selectCategory" model="allCategories" validate="required"/>
                     </fieldset> 
                 </div>
                 <footer>
                     <div class="submit_link">
-                        <t:submit t:id="submit" value="createCard" class="button"  title="Create card" />
+                        <t:submit t:id="submit" value="Create card" class="button alt_btn"  title="Create card" />
                         <input type="submit" value="Reset"/>
 <!--                        <a  t:type="eventlink" t:event="previewCard" href="#" >Preview</a>-->
                         <input class="alt_btn_preview" t:type="submit" t:id="previewCard" value="Preview" />
@@ -44,7 +44,7 @@
                         <div class="flipbox-container">
 
                             <div class="flipbox">
-                                <span>Hello !</span>
+                                <div class="cardStart">Hello, if you want to preview your card, just click "Turn" button bellow, and if you want to change something, and then preview it, just click the preview button again. </div>
                             </div>
 
                         </div>

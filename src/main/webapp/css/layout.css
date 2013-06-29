@@ -778,6 +778,7 @@ fieldset textarea {
     float: left;
     width: 96%;
     margin: 0 10px;
+    height: 100px;
 }
 
 fieldset textarea:focus {
@@ -935,10 +936,11 @@ table{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    padding: 0 10px;
     color: #003E49;
     text-shadow: 0 1px 0 #6CDCF9;
     cursor: pointer;
+    line-height: 22px;
+	padding: 3px 10px;
     
 }
 
