@@ -5,6 +5,8 @@
 
 var turnRotator = false;
 
+var clickPreview = false;
+
 
 $("#btn-turn").on("click", function(e) {
 
@@ -39,5 +41,15 @@ $(".alt_btn_preview").on("click", function(e) {
     	var bsd = $('#cardAnswer').val();
        $(".cardTextSelectorAnswer").text(bsd);
     }
+    
+    if(!clickPreview){
+         $("#cardPreviewZone").show();
+    }
+   
+});
+
+$(".close_btn").on("click", function(e) {
+    
+     $("#cardPreviewZone").hide();
    
 });

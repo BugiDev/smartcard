@@ -16,6 +16,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -24,10 +25,12 @@ import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -37,7 +40,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Bogdan Begovic
  */
-@Import(stylesheet = {"context:css/shCore.css", "context:css/cardStyle.css"}, library = {"context:js/jquery.min.js", "context:js/jquery.flippy.min.js", "context:js/shBrushXml.js", "context:js/shBrushJScript.js", "context:js/shCore.js"})
+@Import(stylesheet = {"context:css/shCore.css", "context:css/cardStyle.css", "context:css/tooltip.css"}, library = {"context:js/jquery.min.js", "context:js/jquery.flippy.min.js", "context:js/shBrushXml.js", "context:js/shBrushJScript.js", "context:js/shCore.js"})
 public class AddNewCard {
 
     private Logger logger = LoggerFactory.getLogger(Login.class);
@@ -47,10 +50,14 @@ public class AddNewCard {
     private Zone cardPreviewZone;
     @InjectComponent
     private Zone cardPlaceholderZone;
+    @InjectComponent
+    private Zone messageZone;
     @Inject
     private Request request;
     @Inject
     private Block cardPreviewBlock;
+//    @Inject
+//    private Block messageBlock;
     @Environmental
     private JavaScriptSupport javaScriptSupport;
     @Inject
@@ -82,6 +89,12 @@ public class AddNewCard {
     @SessionState
     @Property
     private Card card;
+    @Property
+    private String messageText;
+    @Property
+    private String cssClass;
+    @Inject
+    private Messages messages;
 
     public void setupRender() {
 
@@ -103,16 +116,27 @@ public class AddNewCard {
                 ajaxResponseRenderer.addRender("cardPlaceholderZone", cardPlaceholderZone);
             }
         } else {
+            try {
+                card.setCardQuestion(cardQuestion);
+                card.setCardAnswer(cardAnswer);
+                card.setCardNumRaters(0);
+                card.setCardRatingTotal(0);
+                card.setCardStatus(1);
+                card.setSubject((Subject) hibernate.createCriteria(Subject.class).add(Restrictions.eq("subjectName", selectCategory.toString())).uniqueResult());
+                card.setUser((User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID", 1L)).uniqueResult());
+                hibernate.save(card);
+                hibernate.flush();
 
-            card.setCardQuestion(cardQuestion);
-            card.setCardAnswer(cardAnswer);
-            card.setCardNumRaters(0);
-            card.setCardRatingTotal(0);
-            card.setCardStatus(1);
-            card.setSubject((Subject) hibernate.createCriteria(Subject.class).add(Restrictions.eq("subjectName", selectCategory.toString())).uniqueResult());
-            card.setUser((User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID", 1L)).uniqueResult());
-            hibernate.save(card);
-            hibernate.flush();
+                messageText = messages.get("messageSuccess");
+                cssClass = "messageSuccess";
+                ajaxResponseRenderer.addRender("messageZone", messageZone);
+
+            } catch (HibernateException e) {
+                messageText = messages.get("messageError");
+                cssClass = "messageError";
+                ajaxResponseRenderer.addRender("messageZone", messageZone);
+            }
+
         }
     }
 
@@ -130,5 +154,15 @@ public class AddNewCard {
                 + "			$('aside').height($(document).height()-80);\n"
                 + "		$('#main').height($(document).height()-90);});");
         isJSAdded = true;
+    }
+
+    public void onAddJSMessage() {
+        javaScriptSupport.addScript(" \n"
+                + "        \n"
+                + "        $(\".close_btn_message\").on(\"click\", function(e) {\n"
+                + "    \n"
+                + "            $(\"#messageZone\").hide();\n"
+                + "  $(\".close_btn_message\").hide(); \n"
+                + "        });");
     }
 }

@@ -7,12 +7,21 @@
 
     <section id="main" class="column">
 
+        <t:zone t:id="messageZone" t:update="show">
+            <t:trigger event="addJSMessage"/>
+<!--            <t:block t:id="messageBlock">-->
+                <article class="messageContainer width_full">
+                    <t:successmessage text="messageText" cssClass="cssClass"/>
+                </article><!-- end of post new article --> 
+<!--            </t:block>-->
+        </t:zone>  
+        
         <article class="module width_full">
             <header><h3>Post New Article</h3></header>
-            
+
             <t:form t:id="cardForm" name="cardForm" class="cardForm" action="" method="post" t:zone="cardPreviewZone">
                 <div class="module_content"> 
-                    <fieldset>
+                    <fieldset> 
                         <span><t:label for="cardQuestion"/></span>
                         <t:textarea t:id="cardQuestion" size="10" row="8" validate="required"/>
                     </fieldset>
@@ -28,18 +37,21 @@
                 <footer>
                     <div class="submit_link">
                         <t:submit t:id="submit" value="Create card" class="button alt_btn"  title="Create card" />
-                        <input type="submit" value="Reset"/>
-<!--                        <a  t:type="eventlink" t:event="previewCard" href="#" >Preview</a>-->
+                        <input type="submit" value="Reset" />
+                        <!--                        <a  t:type="eventlink" t:event="previewCard" href="#" >Preview</a>-->
                         <input class="alt_btn_preview" t:type="submit" t:id="previewCard" value="Preview" />
                     </div>
                 </footer>
-            </t:form>
-        </article><!-- end of post new article -->
-  
+            </t:form> 
+        </article><!-- end of post new article --> 
+
         <t:zone t:id="cardPreviewZone" t:update="show">
             <t:block t:id="cardPreviewBlock">
                 <article class="module width_full">
-                    <header><h3>Card Preview</h3></header>
+                    <header> 
+                        <h3>Card Preview</h3>
+                        <a class="tooltipPreview"><div class="close_btn"> </div><span>Close Preview <br/> Window</span></a>
+                    </header>
                     <div class="module_content">
                         <div class="flipbox-container">
 
@@ -51,14 +63,14 @@
                     </div>  
                     <footer>
                         <div class="submit_link">
-                            <span class="btn btn_turn" id="btn-turn" href="#">Turn</span>
+                            <div class="btn btn_turn" id="btn-turn" href="#">Turn</div> 
                         </div>
                     </footer>
                 </article><!-- end of post new article -->
                 <t:trigger event="addJS"/>
             </t:block>
         </t:zone>  
-        
+
         <t:zone t:id="cardPlaceholderZone">
             <span class="cardQuestionPlace">${cardQuestion}</span>
             <span class="cardAnswerPlace">${cardAnswer}</span>
