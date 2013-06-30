@@ -157,6 +157,34 @@ public class Card implements Serializable{
     public void setCardStatus(int cardStatus) {
         this.cardStatus = cardStatus;
     }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the subject
+     */
+    public Subject getSubject() {
+        return subject;
+    }
+
+    /**
+     * @param subject the subject to set
+     */
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
     
     
 }
