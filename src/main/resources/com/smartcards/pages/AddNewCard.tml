@@ -2,6 +2,7 @@
       t:pageTitle="${message:pageTitle}"
       t:tabTitle="${message:tabTitle}"
       t:breadcrumb="${message:breadcrumb}"
+      t:username="${asoUser.username}"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
@@ -9,15 +10,13 @@
 
         <t:zone t:id="messageZone" t:update="show">
             <t:trigger event="addJSMessage"/>
-<!--            <t:block t:id="messageBlock">-->
-                <article class="messageContainer width_full">
-                    <t:successmessage text="messageText" cssClass="cssClass"/>
-                </article><!-- end of post new article --> 
-<!--            </t:block>-->
+            <article class="messageContainer width_full">
+                <t:successmessage text="messageText" cssClass="cssClass"/>
+            </article>
         </t:zone>  
-        
+
         <article class="module width_full">
-            <header><h3>Post New Article</h3></header>
+            <header><h3>${message:tabTitle}</h3></header>
 
             <t:form t:id="cardForm" name="cardForm" class="cardForm" action="" method="post" t:zone="cardPreviewZone">
                 <div class="module_content"> 
@@ -36,10 +35,9 @@
                 </div>
                 <footer>
                     <div class="submit_link">
-                        <t:submit t:id="submit" value="Create card" class="button alt_btn"  title="Create card" />
-                        <input type="submit" value="Reset" />
-                        <!--                        <a  t:type="eventlink" t:event="previewCard" href="#" >Preview</a>-->
-                        <input class="alt_btn_preview" t:type="submit" t:id="previewCard" value="Preview" />
+                        <t:submit t:id="submit" value="${message:createCard}" class="button alt_btn"  title="${message:createCard}" />
+                        <input t:type="submit" t:id="resetCard" value="${message:reset}" />
+                        <input class="alt_btn_preview" t:type="submit" t:id="previewCard" value="${message:preview}" />
                     </div>
                 </footer>
             </t:form> 
@@ -49,21 +47,21 @@
             <t:block t:id="cardPreviewBlock">
                 <article class="module width_full">
                     <header> 
-                        <h3>Card Preview</h3>
-                        <a class="tooltipPreview"><div class="close_btn"> </div><span>Close Preview <br/> Window</span></a>
+                        <h3>${message:cardPreview}</h3>
+                        <a class="tooltipPreview"><div class="close_btn"> </div><span>${message:closePreviewWindow}</span></a>
                     </header>
                     <div class="module_content">
                         <div class="flipbox-container">
 
                             <div class="flipbox">
-                                <div class="cardStart">Hello, if you want to preview your card, just click "Turn" button bellow, and if you want to change something, and then preview it, just click the preview button again. </div>
+                                <div class="cardStart">${message:cardPreviewStartText}</div>
                             </div>
 
                         </div>
                     </div>  
                     <footer>
                         <div class="submit_link">
-                            <div class="btn btn_turn" id="btn-turn" href="#">Turn</div> 
+                            <div class="btn btn_turn" id="btn-turn" href="#">${message:turnCard}</div> 
                         </div>
                     </footer>
                 </article><!-- end of post new article -->

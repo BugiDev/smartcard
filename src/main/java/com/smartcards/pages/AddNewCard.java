@@ -7,6 +7,8 @@ package com.smartcards.pages;
 import com.smartcards.entities.Card;
 import com.smartcards.entities.Subject;
 import com.smartcards.entities.User;
+import com.smartcards.services.ProtectedPage;
+import com.smartcards.util.UserType;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.Asset;
@@ -16,7 +18,6 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
-import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -40,6 +41,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Bogdan Begovic
  */
+@ProtectedPage(getRoles = {UserType.ADMIN, UserType.MODERATOR, UserType.CONTRIBUTOR})
 @Import(stylesheet = {"context:css/shCore.css", "context:css/cardStyle.css", "context:css/tooltip.css"}, library = {"context:js/jquery.min.js", "context:js/jquery.flippy.min.js", "context:js/shBrushXml.js", "context:js/shBrushJScript.js", "context:js/shCore.js"})
 public class AddNewCard {
 
@@ -56,8 +58,6 @@ public class AddNewCard {
     private Request request;
     @Inject
     private Block cardPreviewBlock;
-//    @Inject
-//    private Block messageBlock;
     @Environmental
     private JavaScriptSupport javaScriptSupport;
     @Inject
@@ -95,7 +95,10 @@ public class AddNewCard {
     private String cssClass;
     @Inject
     private Messages messages;
-
+    @SessionState
+    @Property
+    private User asoUser;
+ 
     public void setupRender() {
 
         List<Subject> tmpCategories = hibernate.createCriteria(Subject.class).list();
@@ -103,7 +106,6 @@ public class AddNewCard {
         for (Subject subject : tmpCategories) {
             allCategories.add(subject.getSubjectName());
         }
-
         isJSAdded = false;
     }
 
@@ -142,6 +144,14 @@ public class AddNewCard {
 
     public void onSelectedFromPreviewCard() {
         isPreview = true;
+    }
+
+    public Object onSelectedFromResetCard() {
+        isPreview = false;
+        cardQuestion = null;
+        cardAnswer = null;
+        return this;
+
     }
 
     public void onAddJS() {

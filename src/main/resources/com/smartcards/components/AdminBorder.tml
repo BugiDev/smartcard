@@ -12,53 +12,55 @@
 
         <header id="header">
             <hgroup>
-                <h1 class="site_title"><a href="index.html">SmartCard Admin Panel</a></h1>
+                <h1 class="site_title"><a href="index.html">${message:adminPanelName}</a></h1>
                 <h2 class="section_title">${pageTitle}</h2>
             </hgroup>
         </header> <!-- end of header bar -->
 
         <section id="secondary_bar">
             <div class="user">
-                <p>John Doe (<a href="#">Logout</a>)</p>
+                
+                <p>${username} (<a t:type="eventlink" t:event="logout" href="#">${message:logout}</a>)</p>
                 <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
             </div>
             <div class="breadcrumbs_container">
-                <article class="breadcrumbs"><a href="index.html">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">${breadcrumb}</a></article>
+                <article class="breadcrumbs"><a href="index.html">${message:adminHomePageName}</a> <div class="breadcrumb_divider"></div> <a class="current">${breadcrumb}</a></article>
             </div>
         </section><!-- end of secondary bar -->
 
         <aside id="sidebar" class="column">
-            <form class="quick_search">
-                <input type="text" value="Quick Search" onfocus="if (!this._haschanged) {
-                            this.value = ''
-                        }
-                        ;
-                        this._haschanged = true;"/>
-            </form>
-            <hr/>
-            <h3>Cards</h3>
+            <h3>${message:cards}</h3>
             <ul class="toggle">
-                <li class="icn_new_article"><a href="#">New Card</a></li>
-                <li class="icn_edit_article"><a href="#">Edit Card</a></li>
-                <li class="icn_categories"><a href="#">Add Categories</a></li>
-                <li class="icn_edit_article"><a href="#">Edit Categories</a></li>
-            </ul>
-            <h3>Users</h3>
-            <ul class="toggle">
-                <li class="icn_add_user"><a href="#">Add New User</a></li>
-                <li class="icn_edit_article"><a href="#">Edit User</a></li>
-                <li class="icn_profile"><a href="#">Your Profile</a></li>
-            </ul>
+                <li class="icn_new_article"><a href="#">${message:newCard}</a></li>
+                <li class="icn_edit_article"><a href="#">${message:editCard}</a></li>
 
+                <t:if t:test="testIsAdmin">
+                    <li class="icn_categories"><a href="#">${message:addCategory}</a></li>
+                    <li class="icn_edit_article"><a href="#">${message:editCategory}</a></li>
+                </t:if>
+                <t:if t:test="testIsModerator">
+                    <li class="icn_categories"><a href="#">${message:addCategory}</a></li>
+                    <li class="icn_edit_article"><a href="#">${message:editCategory}</a></li>
+                </t:if>
+
+            </ul>
+            <h3>${message:users}</h3>
+            <ul class="toggle">
+                <t:if t:test="testIsAdmin">
+                    <li class="icn_add_user"><a href="#">${message:newUser}</a></li>
+                    <li class="icn_edit_article"><a href="#">${message:editUser}</a></li>
+                </t:if>
+                <li class="icn_profile"><a href="#">${message:yourProfile}</a></li>
+            </ul>
             <br/>
             <br/>
             <hr />
-            <span><li class="icn_jump_back"><a href="#">Logout</a></li></span>
+            <span><li class="icn_jump_back"><a t:type="eventlink" t:event="logout" href="#">${message:logout}</a></li></span>
 
             <footer>
                 <hr />
-                <p><strong>Copyright &copy; SmartCarad 2013</strong></p>
-                <p>Developed by <a href="mailto:bogdanbegovic@gmail.com">Bogdan Begović</a></p>
+                <p><strong>${message:copyright}</strong></p>
+                <p>${message:developBy}<a href="mailto:bogdanbegovic@gmail.com">${message:devName}</a></p>
             </footer>
         </aside><!-- end of sidebar -->
 
