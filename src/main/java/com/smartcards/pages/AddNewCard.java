@@ -45,7 +45,6 @@ import org.slf4j.LoggerFactory;
 @Import(stylesheet = {"context:css/shCore.css", "context:css/cardStyle.css", "context:css/tooltip.css"}, library = {"context:js/jquery.min.js", "context:js/jquery.flippy.min.js", "context:js/shBrushXml.js", "context:js/shBrushJScript.js", "context:js/shCore.js"})
 public class AddNewCard {
 
-    private Logger logger = LoggerFactory.getLogger(Login.class);
     @Component(id = "cardForm")
     private Form cardForm;
     @InjectComponent

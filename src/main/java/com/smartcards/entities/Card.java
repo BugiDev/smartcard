@@ -39,6 +39,7 @@ public class Card implements Serializable{
     @Basic(optional = false)
     @Column(name = "Card_status")
     private int cardStatus;
+    @Basic(optional = false)
     @ManyToOne
     @JoinColumn(name="User_ID")
     private User user;
@@ -185,6 +186,5 @@ public class Card implements Serializable{
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
-    
     
 }

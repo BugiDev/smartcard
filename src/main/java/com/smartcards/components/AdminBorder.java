@@ -1,7 +1,9 @@
 package com.smartcards.components;
 
 import com.smartcards.entities.User;
+import com.smartcards.pages.AddNewCard;
 import com.smartcards.pages.Login;
+import com.smartcards.pages.NewCardsUsers;
 import com.smartcards.util.UserType;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -13,9 +15,12 @@ import org.apache.tapestry5.annotations.SessionState;
  * Layout component for pages of application smartcards.
  */
 @Import(stylesheet = {"context:css/layout.css", "context:css/tooltip.css"},
-        library = {"context:js/hideshow.js", "context:js/jquery.tablesorter.min.js", "context:js/jquery.equalHeight.js", "context:js/jquery.index.documentLoad.js"})
+library = {"context:js/hideshow.js", "context:js/jquery.tablesorter.min.js", "context:js/jquery.equalHeight.js", "context:js/jquery.index.documentLoad.js"})
 public class AdminBorder {
 
+    @SessionState
+    @Property
+    private User asoUser;
     @Property
     @Parameter(required = true, defaultPrefix = "literal")
     private String pageTitle;
@@ -26,13 +31,13 @@ public class AdminBorder {
     @Parameter(required = true, defaultPrefix = "literal")
     private String breadcrumb;
     @Property
-    @Parameter(required = true, defaultPrefix = "literal")
-    private String username;
-    @SessionState
-    @Property
-    private User asoUser;
+    private String username = asoUser.getFirstname()+" "+asoUser.getLastname();
     @InjectPage
     private Login login;
+    @InjectPage
+    private AddNewCard addNewCardPage;
+    @InjectPage
+    private NewCardsUsers newCardsUsers;
 
     public boolean getTestIsAdmin() {
         if (asoUser.getRoleType() == UserType.ADMIN.getCode()) {
@@ -52,4 +57,17 @@ public class AdminBorder {
         asoUser = null;
         return login;
     }
+
+    public Object onAsideMenuClick(String menuType) {
+        if (menuType.equalsIgnoreCase("newCard")) {
+
+            return addNewCardPage;
+        }
+        return null;
+    }
+    
+    public Object onGoHome(){
+        return newCardsUsers;
+    }
+    
 }

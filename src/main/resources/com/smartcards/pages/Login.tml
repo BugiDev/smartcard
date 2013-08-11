@@ -35,7 +35,7 @@
                     <!--USERNAME-->
                     <t:textfield t:id="username" class="input username" title="Enter your username" onfocus="this.value = ''" /><!--END USERNAME-->
                     <!--PASSWORD-->
-                    <t:textfield t:id="password" class="input password" title="Enter your password" onfocus="this.value = ''" /><!--END PASSWORD-->
+                    <t:textfield t:id="password" class="input password" type="password" title="Enter your password" onfocus="this.value = ''" /><!--END PASSWORD-->
                 </div>
                 <!--END CONTENT-->
 
