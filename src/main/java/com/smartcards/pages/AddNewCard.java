@@ -34,8 +34,6 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -124,7 +122,7 @@ public class AddNewCard {
                 card.setCardRatingTotal(0);
                 card.setCardStatus(1);
                 card.setSubject((Subject) hibernate.createCriteria(Subject.class).add(Restrictions.eq("subjectName", selectCategory.toString())).uniqueResult());
-                card.setUser((User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID", 1L)).uniqueResult());
+                card.setUser((User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID",asoUser.getUserID())).uniqueResult());
                 hibernate.save(card);
                 hibernate.flush();
 

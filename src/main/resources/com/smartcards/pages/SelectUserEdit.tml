@@ -1,0 +1,38 @@
+<html t:type="adminborder" title="About smartcards"
+      t:pageTitle="${message:pageTitle}"
+      t:tabTitle="${message:tabTitle}"
+      t:breadcrumb="${message:breadcrumb}"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <section id="main" class="column">
+
+        <article class="module width_full">
+
+            <header><h3>${message:tabTitle}</h3>
+            </header>
+
+            <div class="tab_container">
+                <table t:type="grid" t:source="users" t:row="user" t:model="usermodel" t:pagerPosition="bottom" t:rowsPerPage="10" class="tablesorter" cellspacing="0">[Grid here]
+                    <p:actionCell>
+                        <t:eventlink t:event="editUser" t:context="user.userID" class="tooltipActionsTable"><img src="${context:images/icn_edit.png}"/><span>Edit</span></t:eventlink>&nbsp;
+                    </p:actionCell>
+                    <p:roleTypeNameCell>
+                        <t:showRoleType userRoleType="user.roleType"> </t:showRoleType>
+                    </p:roleTypeNameCell>
+                </table>
+            </div> 
+            <!--end of .tab_container--> 
+            <footer>
+            </footer>
+        </article> 
+
+        <!--end of content manager article--> 
+
+        <div class="clear"></div>
+
+        <div class="spacer"></div>
+
+    </section>
+
+</html>

@@ -32,15 +32,11 @@
             <h3>${message:cards}</h3>
             <ul class="toggle">
                 <li class="icn_new_article"><t:eventlink t:event="asideMenuClick" t:context="literal:newCard">${message:newCard}</t:eventlink></li>
-                <li class="icn_edit_article"><a href="#">${message:editCard}</a></li>
+                <li class="icn_edit_article"><t:eventlink t:event="asideMenuClick" t:context="literal:selectCardEdit">${message:editCard}</t:eventlink></li>
 
-                <t:if t:test="testIsAdmin">
-                    <li class="icn_categories"><a href="#">${message:addCategory}</a></li>
-                    <li class="icn_edit_article"><a href="#">${message:editCategory}</a></li>
-                </t:if>
-                <t:if t:test="testIsModerator">
-                    <li class="icn_categories"><a href="#">${message:addCategory}</a></li>
-                    <li class="icn_edit_article"><a href="#">${message:editCategory}</a></li>
+                <t:if t:test="testIsAdminOrModerator">
+                    <li class="icn_categories"><t:eventlink t:event="asideMenuClick" t:context="literal:newSubject">${message:addCategory}</t:eventlink></li>
+                    <li class="icn_edit_article"><t:eventlink t:event="asideMenuClick" t:context="literal:editSubject">${message:editCategory}</t:eventlink></li>
                 </t:if>
 
             </ul>
@@ -48,7 +44,7 @@
             <ul class="toggle">
                 <t:if t:test="testIsAdmin">
                     <li class="icn_add_user"><a href="#">${message:newUser}</a></li>
-                    <li class="icn_edit_article"><a href="#">${message:editUser}</a></li>
+                    <li class="icn_edit_article"><t:eventlink t:event="asideMenuClick" t:context="literal:selectUserEdit">${message:editUser}</t:eventlink></li>
                 </t:if>
                 <li class="icn_profile"><a href="#">${message:yourProfile}</a></li>
             </ul>

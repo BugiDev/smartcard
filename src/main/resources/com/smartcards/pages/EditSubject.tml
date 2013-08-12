@@ -1,0 +1,43 @@
+<html t:type="adminborder" title="About smartcards"
+      t:pageTitle="${message:pageTitle}"
+      t:tabTitle="${message:tabTitle}"
+      t:breadcrumb="${message:breadcrumb}"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <section id="main" class="column">
+
+        <t:zone t:id="messageZoneSubject" t:update="show">
+            <t:trigger event="addJSMessage"/>
+            <article class="messageContainer width_full">
+                <t:successmessage text="messageText" cssClass="cssClass"/>
+            </article>
+        </t:zone>  
+
+        <article class="module width_full">
+            <header><h3>${message:tabTitle}</h3></header>
+
+            <t:form t:id="subjectForm" name="subjectForm" class="cardForm" action="" method="post" t:zone="messageZoneSubject">
+                <div class="module_content"> 
+                    <fieldset> 
+                        <span><t:label for="subjectInput"/></span>
+                        <t:textfield t:id="subjectInput" validate="required"/>
+                    </fieldset> 
+                </div>
+                <footer>
+                    <div class="submit_link">
+                        <t:submit t:id="submit" value="${message:createSubject}" class="button alt_btn"  title="${message:createSubject}" />
+                        <input t:type="submit" t:id="resetSubject" value="${message:reset}" />
+                    </div>
+                </footer>
+            </t:form> 
+        </article><!-- end of post new article --> 
+
+        <div class="clear"></div>
+
+        <div class="spacer"></div>
+
+
+    </section>
+
+</html>
