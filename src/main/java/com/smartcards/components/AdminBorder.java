@@ -3,6 +3,7 @@ package com.smartcards.components;
 import com.smartcards.entities.User;
 import com.smartcards.pages.AddNewCard;
 import com.smartcards.pages.AddNewSubject;
+import com.smartcards.pages.AddNewUser;
 import com.smartcards.pages.Login;
 import com.smartcards.pages.NewCardsUsers;
 import com.smartcards.pages.SelectCardEdit;
@@ -19,7 +20,7 @@ import org.apache.tapestry5.annotations.SessionState;
  * Layout component for pages of application smartcards.
  */
 @Import(stylesheet = {"context:css/layout.css", "context:css/tooltip.css"},
-        library = {"context:js/hideshow.js", "context:js/jquery.tablesorter.min.js", "context:js/jquery.equalHeight.js", "context:js/jquery.index.documentLoad.js"})
+library = {"context:js/hideshow.js", "context:js/jquery.tablesorter.min.js", "context:js/jquery.equalHeight.js", "context:js/jquery.index.documentLoad.js"})
 public class AdminBorder {
 
     @SessionState
@@ -50,6 +51,8 @@ public class AdminBorder {
     private AddNewSubject addNewSubject;
     @InjectPage
     private SelectSubjectEdit selectSubjectEdit;
+    @InjectPage
+    private AddNewUser addNewUser;
 
     public boolean getTestIsAdmin() {
         if (asoUser.getRoleType() == UserType.ADMIN.getCode()) {
@@ -97,6 +100,10 @@ public class AdminBorder {
         if (menuType.equalsIgnoreCase("editSubject")) {
 
             return selectSubjectEdit;
+        }
+        if (menuType.equalsIgnoreCase("newUser")) {
+
+            return addNewUser;
         }
         return null;
     }

@@ -14,6 +14,7 @@ import com.smartcards.util.UserType;
 import java.util.List;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -34,6 +35,7 @@ import org.hibernate.criterion.Restrictions;
  * @author Bogdan Begovic
  */
 @ProtectedPage(getRoles = {UserType.ADMIN, UserType.MODERATOR})
+@Import(library = {"context:js/dialog/EditSubjectForDelete.js"})
 public class SelectSubjectEdit {
 
     @SessionState
@@ -71,7 +73,7 @@ public class SelectSubjectEdit {
         subjectModel.get("subjectName").sortable(false);
         // Get all persons - ask business service to find them (from the database)
 
-        subjects = hibernate.createCriteria(Subject.class).list();
+        subjects = hibernate.createCriteria(Subject.class).add(Restrictions.eq("subjectDeleted", false)).list();
 
     }
 
@@ -83,8 +85,8 @@ public class SelectSubjectEdit {
     @CommitAfter
     public Object onSubmitFromDeleteForm() {
         try {
-//            Subject subject = (Subject) hibernate.createCriteria(Subject.class).add(Restrictions.eq("cardID", selectedCardID)).uniqueResult();
-////            subject.s;
+            Subject subject = (Subject) hibernate.createCriteria(Subject.class).add(Restrictions.eq("subjectID", selectedSubjectID)).uniqueResult();
+            subject.setSubjectDeleted(true);
             hibernate.update(subject);
             hibernate.flush();
         } catch (HibernateException e) {
@@ -93,7 +95,7 @@ public class SelectSubjectEdit {
         return this;
     }
 
-    public void onSelectCard(long selected) {
+    public void onSelectSubject(long selected) {
         selectedSubjectID = selected;
         System.out.println("SELECTED ID: " + selected);
     }

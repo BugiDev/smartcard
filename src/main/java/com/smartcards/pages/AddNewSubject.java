@@ -71,12 +71,15 @@ public class AddNewSubject {
             
             subject = new Subject();
             subject.setSubjectName(subjectInput);
+            subject.setSubjectDeleted(false);
             hibernate.save(subject);
             hibernate.flush();
 
             messageText = messages.get("messageSuccess");
             cssClass = "messageSuccess";
             ajaxResponseRenderer.addRender("messageZoneSubject", messageZoneSubject);
+            
+            onSelectedFromResetSubject();
 
         } catch (HibernateException e) {
             messageText = messages.get("messageError");

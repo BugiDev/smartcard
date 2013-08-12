@@ -4,9 +4,9 @@
       t:breadcrumb="${message:breadcrumb}"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
-
+ 
     <section id="main" class="column">
-
+ 
         <article class="module width_full">
             <header><h3>${message:tabTitle}</h3>
             </header>

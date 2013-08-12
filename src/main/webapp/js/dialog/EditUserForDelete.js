@@ -11,9 +11,9 @@ $(document).ready(function() {
 
     $( ".callDeleteLink" ).click(function(event) {
         $( "#deleteDialog" ).dialog( "option", "modal", true );
-        var subjectID = $( event.currentTarget ).attr( 'subjectid' )
+        var userID = $( event.currentTarget ).attr( 'userid' )
         
-        $.get('/smartcard/selectsubjectedit:selectSubject/'+subjectID, function(data) {
+        $.get('/smartcard/selectuseredit:selectUser/'+userID, function(data) {
             });
     
     });

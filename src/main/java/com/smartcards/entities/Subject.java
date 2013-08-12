@@ -29,6 +29,9 @@ public class Subject implements Serializable {
     @Basic(optional = false)
     @Column(name = "Subject_name")
     private String subjectName;
+    @Basic(optional = false)
+    @Column(name = "Subject_deleted")
+    private boolean subjectDeleted;
     @OneToMany(mappedBy = "subject")
     private Set<Card> card;
 
@@ -100,5 +103,19 @@ public class Subject implements Serializable {
      */
     public void setCard(Set<Card> card) {
         this.card = card;
+    }
+
+    /**
+     * @return the subjectDeleted
+     */
+    public boolean isSubjectDeleted() {
+        return subjectDeleted;
+    }
+
+    /**
+     * @param subjectDeleted the subjectDeleted to set
+     */
+    public void setSubjectDeleted(boolean subjectDeleted) {
+        this.subjectDeleted = subjectDeleted;
     }
 }

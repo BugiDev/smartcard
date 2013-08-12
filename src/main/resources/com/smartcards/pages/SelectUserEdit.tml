@@ -16,6 +16,7 @@
                 <table t:type="grid" t:source="users" t:row="user" t:model="usermodel" t:pagerPosition="bottom" t:rowsPerPage="10" class="tablesorter" cellspacing="0">[Grid here]
                     <p:actionCell>
                         <t:eventlink t:event="editUser" t:context="user.userID" class="tooltipActionsTable"><img src="${context:images/icn_edit.png}"/><span>Edit</span></t:eventlink>&nbsp;
+                        <t:jquery.dialoglink t:id="deleteLink" userID="${user.userID}" t:dialog="deleteDialog" class="tooltipActionsTable callDeleteLink" ><img src="${context:images/icn_trash.png}"/><span>Trash</span></t:jquery.dialoglink>&nbsp;
                     </p:actionCell>
                     <p:roleTypeNameCell>
                         <t:showRoleType userRoleType="user.roleType"> </t:showRoleType>
@@ -32,6 +33,19 @@
         <div class="clear"></div>
 
         <div class="spacer"></div>
+        
+                <t:jquery.dialog t:clientId="deleteDialog">
+
+            <t:form t:id="deleteForm">
+                <div class="dialog_text_container">Are you sure you want to delete this user?</div>
+                <div class="dialog_btn_container">
+                    <input class="alt_btn_preview" t:type="submit" t:id="confirmDelete" value="Confirm Delete" />
+                    <span id="cancleDelete" class="alt_btn">Cancle</span>
+                </div>
+            </t:form>
+
+
+        </t:jquery.dialog>
 
     </section>
 

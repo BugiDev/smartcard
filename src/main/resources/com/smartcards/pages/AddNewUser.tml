@@ -1,0 +1,79 @@
+<html t:type="adminborder" title="About smartcards"
+      t:pageTitle="${message:pageTitle}"
+      t:tabTitle="${message:tabTitle}"
+      t:breadcrumb="${message:breadcrumb}"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <section id="main" class="column">
+
+        <t:zone t:id="messageZone" t:update="show">
+            <t:trigger event="addJSMessage"/>
+            <article class="messageContainer width_full">
+                <t:successmessage text="messageText" cssClass="cssClass"/>
+            </article>
+        </t:zone>  
+
+        <article class="module width_full">
+            <header><h3>${message:tabTitle}</h3></header>
+
+            <t:form t:id="userForm" name="userForm" class="cardForm" action="" method="post" t:zone="messageZone">
+                <div class="module_content"> 
+
+
+
+                    <fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+                        <span><t:label for="firstName"/></span>
+                        <t:textfield t:id="firstName" size="10" row="8" validate="required"/>
+                    </fieldset>
+                    <fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
+                        <span><t:label for="lastName"/></span>
+                        <t:textfield t:id="lastName" size="10" row="8" validate="required"/>
+                    </fieldset>
+                    
+                    <div class="clear"></div>
+
+                    <fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+                        <span><t:label for="username"/></span>
+                        <t:textfield t:id="username" size="10" row="8" validate="required"/>
+                    </fieldset>
+                    <fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
+                        <span><t:label for="password"/></span>
+                        <t:textfield t:id="password" size="10" row="8" validate="required"/>
+                    </fieldset>
+                    
+                     <div class="clear"></div>
+                     
+                     <fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+                        <span><t:label for="email"/></span>
+                        <t:textfield t:id="email" size="10" row="8" validate="required, email"/>
+                    </fieldset>
+                    <fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
+                        <span><t:label for="birthday"/></span>
+                        <t:datefield t:id="birthday" size="10" row="8" validate="required"/>
+                    </fieldset>
+                    
+                     <div class="clear"></div>
+                   
+                    <fieldset style="width:48%; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+                        <span><t:label for="selectRoleType"/></span>
+                        <t:select t:id="selectRoleType" model="allRoleTypes" validate="required"/>
+                    </fieldset> 
+                </div>
+                <footer>
+                    <div class="submit_link">
+                        <t:submit t:id="submit" value="${message:createUser}" class="button alt_btn"  title="${message:createUser}" />
+                        <input t:type="submit" t:id="resetUser" value="${message:reset}" />
+                    </div>
+                </footer>
+            </t:form> 
+        </article><!-- end of post new article --> 
+
+        <div class="clear"></div>
+
+        <div class="spacer"></div>
+
+
+    </section>
+
+</html>

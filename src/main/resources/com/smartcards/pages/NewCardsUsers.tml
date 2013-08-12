@@ -26,7 +26,7 @@
                             </p:subjectCell>
                             <p:actionCell>
                                 <t:eventlink t:event="edit" t:context="card.cardID" class="tooltipActionsTable"><img src="${context:images/icn_edit.png}"/><span>Edit</span></t:eventlink>&nbsp;
-                                <t:jquery.dialoglink t:id="deleteLink" cardID="${card.cardID}" t:dialog="deleteDialog" class="tooltipActionsTable" ><img src="${context:images/icn_trash.png}"/><span>Trash</span></t:jquery.dialoglink>&nbsp;
+                                <t:jquery.dialoglink t:id="deleteLink" cardID="${card.cardID}" t:dialog="deleteDialog" class="tooltipActionsTable selectedDeleteLink" ><img src="${context:images/icn_trash.png}"/><span>Trash</span></t:jquery.dialoglink>&nbsp;
                                 <t:eventlink t:event="aprove" t:context="card.cardID" class="tooltipActionsTable"><img src="${context:images/icn_alert_success.png}"/><span>Aprove</span></t:eventlink>
 
                             </p:actionCell>
@@ -40,7 +40,7 @@
                             <table t:type="grid" t:source="users" t:row="user" t:model="usermodel" t:pagerPosition="bottom" t:rowsPerPage="10" class="tablesorter" cellspacing="0">[Grid here]
                                 <p:actionCell>
                                     <t:eventlink t:event="editUser" t:context="user.userID" class="tooltipActionsTable"><img src="${context:images/icn_edit.png}"/><span>Edit</span></t:eventlink>&nbsp;
-                                    <t:jquery.dialoglink t:id="deleteLinkUser" userID="${user.userID}" t:dialog="deleteDialogUser" class="tooltipActionsTable" ><img src="${context:images/icn_trash.png}"/><span>Trash</span></t:jquery.dialoglink>&nbsp;
+                                    <t:jquery.dialoglink t:id="deleteLinkUser" userID="${user.userID}" t:dialog="deleteDialogUser" class="tooltipActionsTable selectedDeleteLink" ><img src="${context:images/icn_trash.png}"/><span>Trash</span></t:jquery.dialoglink>&nbsp;
                                     <t:eventlink t:event="aproveUser" t:context="user.userID" class="tooltipActionsTable"><img src="${context:images/icn_alert_success.png}"/><span>Aprove</span></t:eventlink>
 
                                 </p:actionCell>

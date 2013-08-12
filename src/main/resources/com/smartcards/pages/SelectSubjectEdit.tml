@@ -16,7 +16,7 @@
                 <table t:type="grid" t:source="subjects" t:row="subject" t:model="subjectmodel" t:pagerPosition="bottom" t:rowsPerPage="10" class="tablesorter" cellspacing="0">[Grid here]
                     <p:actionCell>
                         <t:eventlink t:event="editSubject" t:context="subject.subjectID" class="tooltipActionsTable"><img src="${context:images/icn_edit.png}"/><span>Edit</span></t:eventlink>&nbsp;
-                        <t:jquery.dialoglink t:id="deleteLink" cardID="${subject.subjectID}" t:dialog="deleteDialog" class="tooltipActionsTable callDeleteLink" ><img src="${context:images/icn_trash.png}"/><span>Trash</span></t:jquery.dialoglink>&nbsp;
+                        <t:jquery.dialoglink t:id="deleteLink" subjectID="${subject.subjectID}" t:dialog="deleteDialog" class="tooltipActionsTable callDeleteLink" ><img src="${context:images/icn_trash.png}"/><span>Trash</span></t:jquery.dialoglink>&nbsp;
                     </p:actionCell>
                 </table>
             </div> 

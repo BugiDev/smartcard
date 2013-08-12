@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
@@ -61,6 +62,8 @@ public class NewCardsUsers {
     @Property
     @Persist(PersistenceConstants.FLASH)
     private long selectedUserID;
+    @InjectPage
+    private EditCard editCardPage;
 
     // The code
     void setupRender() {
@@ -96,7 +99,8 @@ public class NewCardsUsers {
     }
 
     public Object onEdit(long cardID) {
-        return null;
+        editCardPage.setInitialDataToEdit(cardID);
+        return editCardPage;
     }
 
     @CommitAfter
@@ -136,9 +140,9 @@ public class NewCardsUsers {
         }
         return false;
     }
-    
+
     public boolean getTestIsAdmin() {
-        if (asoUser.getRoleType() == UserType.ADMIN.getCode()){
+        if (asoUser.getRoleType() == UserType.ADMIN.getCode()) {
             return true;
         }
         return false;

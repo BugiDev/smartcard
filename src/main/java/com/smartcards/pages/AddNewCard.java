@@ -129,6 +129,8 @@ public class AddNewCard {
                 messageText = messages.get("messageSuccess");
                 cssClass = "messageSuccess";
                 ajaxResponseRenderer.addRender("messageZone", messageZone);
+                
+                onSelectedFromResetCard();
 
             } catch (HibernateException e) {
                 messageText = messages.get("messageError");

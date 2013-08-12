@@ -43,7 +43,7 @@
             <h3>${message:users}</h3>
             <ul class="toggle">
                 <t:if t:test="testIsAdmin">
-                    <li class="icn_add_user"><a href="#">${message:newUser}</a></li>
+                    <li class="icn_add_user"><t:eventlink t:event="asideMenuClick" t:context="literal:newUser">${message:newUser}</t:eventlink></li>
                     <li class="icn_edit_article"><t:eventlink t:event="asideMenuClick" t:context="literal:selectUserEdit">${message:editUser}</t:eventlink></li>
                 </t:if>
                 <li class="icn_profile"><a href="#">${message:yourProfile}</a></li>

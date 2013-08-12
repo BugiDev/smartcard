@@ -9,9 +9,9 @@ $(document).ready(function() {
         autoOpen: false
     });
 
-    $( "#deleteLink" ).click(function() {
+    $( ".selectedDeleteLink" ).click(function(event) {
         $( "#deleteDialog" ).dialog( "option", "modal", true );
-        var cardID = $( "#deleteLink" ).attr( 'cardid' )
+        var cardID = $( event.currentTarget ).attr( 'cardid' )
         
         $.get('/smartcard/newcardsusers:selectCard/'+cardID, function(data) {
             });
@@ -28,9 +28,9 @@ $(document).ready(function() {
         autoOpen: false
     });
 
-    $( "#deleteLinkUser" ).click(function() {
+    $( ".selectedDeleteLink" ).click(function(event) {
         $( "#deleteDialogUser" ).dialog( "option", "modal", true );
-        var userID = $( "#deleteLinkUser" ).attr( 'userid' )
+        var userID = $( event.currentTarget ).attr( 'userid' )
         
         $.get('/smartcard/newcardsusers:selectUser/'+userID, function(data) {
             });
