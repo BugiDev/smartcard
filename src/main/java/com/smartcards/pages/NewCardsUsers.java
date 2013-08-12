@@ -136,6 +136,13 @@ public class NewCardsUsers {
         }
         return false;
     }
+    
+    public boolean getTestIsAdmin() {
+        if (asoUser.getRoleType() == UserType.ADMIN.getCode()){
+            return true;
+        }
+        return false;
+    }
 
     public Object onEditUser(long userID) {
         return null;

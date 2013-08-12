@@ -19,14 +19,12 @@
 
         <section id="secondary_bar">
             <div class="user">
-
+                
                 <p>${username} (<a t:type="eventlink" t:event="logout" href="#">${message:logout}</a>)</p>
                 <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
             </div>
             <div class="breadcrumbs_container">
-                <article class="breadcrumbs">
-                    <t:eventlink t:event="goHome">${message:adminHomePageName}</t:eventlink><br/>
-                    <div class="breadcrumb_divider"></div> <a class="current">${breadcrumb}</a></article>
+                <article class="breadcrumbs"><t:eventlink t:event="goHome">${message:adminHomePageName}</t:eventlink> <div class="breadcrumb_divider"></div> <a class="current">${breadcrumb}</a></article>
             </div>
         </section><!-- end of secondary bar -->
 

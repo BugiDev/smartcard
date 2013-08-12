@@ -25,7 +25,6 @@ import org.slf4j.LoggerFactory;
 @Import(stylesheet = {"context:css/login_style.css"}, library = {"context:js/jquery-1.5.2.min.js", "context:js/login_onStart.js"})
 public class Login {
 
-    private Logger logger = LoggerFactory.getLogger(Login.class);
     @Persist(PersistenceConstants.FLASH)
     @Validate("required")
     @Property
@@ -56,15 +55,17 @@ public class Login {
     @Inject
     private Block loginErrorBlock;
 
+    void setupRender(){
+        username = null;
+        password = null;
+    }
+    
     public Object onSubmit() {
         loginErrorMessage = "";
-        logger.debug("Username = " + username);
-        logger.debug("Password = " + password);
         List resaultList = hibernate.createCriteria(User.class).add(Restrictions.eq("username", username)).add(Restrictions.eq("password", password)).add(Restrictions.eq("userActive", true)).list();
-        logger.debug(resaultList.toString());
+
         if (resaultList.size() > 0) {
             User tempUser = (User) resaultList.get(0);
-            logger.debug(tempUser.getUsername() + " " + tempUser.getPassword());
 
             if (tempUser.getUserConfirmed()) {
                 asoUser = tempUser;
