@@ -21,7 +21,6 @@
             <div class="user">
                 
                 <p>${username} (<a t:type="eventlink" t:event="logout" href="#">${message:logout}</a>)</p>
-                <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
             </div>
             <div class="breadcrumbs_container">
                 <article class="breadcrumbs"><t:eventlink t:event="goHome">${message:adminHomePageName}</t:eventlink> <div class="breadcrumb_divider"></div> <a class="current">${breadcrumb}</a></article>
@@ -46,7 +45,7 @@
                     <li class="icn_add_user"><t:eventlink t:event="asideMenuClick" t:context="literal:newUser">${message:newUser}</t:eventlink></li>
                     <li class="icn_edit_article"><t:eventlink t:event="asideMenuClick" t:context="literal:selectUserEdit">${message:editUser}</t:eventlink></li>
                 </t:if>
-                <li class="icn_profile"><a href="#">${message:yourProfile}</a></li>
+                <li class="icn_profile"><t:eventlink t:event="asideMenuClick" t:context="literal:yourProfile">${message:yourProfile}</t:eventlink></li>
             </ul>
             <br/>
             <br/>

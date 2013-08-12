@@ -50,7 +50,7 @@
                     </fieldset>
                     <fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
                         <span><t:label for="birthday"/></span>
-                        <t:datefield t:id="birthday" style="width: auto;" validate="required"/>
+                        <t:datefield t:id="birthday" size="10" row="8" validate="required"/>
                     </fieldset>
                     
                      <div class="clear"></div>
@@ -62,7 +62,7 @@
                 </div>
                 <footer>
                     <div class="submit_link">
-                        <t:submit t:id="submit" value="${message:createUser}" class="button alt_btn"  title="${message:createUser}" />
+                        <t:submit t:id="submit" value="${message:editUser}" class="button alt_btn"  title="${message:editUser}" />
                         <input t:type="submit" t:id="resetUser" value="${message:reset}" />
                     </div>
                 </footer>

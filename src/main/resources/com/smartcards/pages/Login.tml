@@ -6,7 +6,7 @@
 
         <!--META-->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Login Form</title>
+        <title>${message:loginTitle}</title>
 
     </head>
     <body>
@@ -24,8 +24,8 @@
                 <t:errors/>
                 <!--HEADER-->
                 <div class="header">
-                    <!--TITLE--><h1>Login</h1><!--END TITLE-->
-                    <!--DESCRIPTION--><span>Enter your username and password to access admin panel.</span><!--END DESCRIPTION-->
+                    <!--TITLE--><h1>${message:title}</h1><!--END TITLE-->
+                    <!--DESCRIPTION--><span>${message:header}</span><!--END DESCRIPTION-->
 
                 </div>
                 <!--END HEADER-->
@@ -41,7 +41,7 @@
 
                 <!--FOOTER-->
                 <div class="footer"> 
-                    <span class="forgotPass"><a href="#">Forgot you password?</a></span>
+                    <span class="forgotPass"><a href="#">${message:forgotPass}</a></span>
                     <!--LOGIN BUTTON--><t:submit t:id="submit" value="login" class="button"  title="Login" /><!--END LOGIN BUTTON-->
                 </div>
                 <!--END FOOTER-->

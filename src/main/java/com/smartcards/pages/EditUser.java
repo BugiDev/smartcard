@@ -5,7 +5,6 @@
 package com.smartcards.pages;
 
 import com.smartcards.entities.User;
-import com.smartcards.services.ProtectedPage;
 import com.smartcards.util.UserType;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,8 +33,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Bogdan
  */
-@ProtectedPage(getRoles = {UserType.ADMIN})
-public class AddNewUser {
+public class EditUser {
 
     @Component(id = "userForm")
     private Form userForm;
@@ -93,7 +91,7 @@ public class AddNewUser {
     @SessionState
     @Property
     private User asoUser;
-
+ 
     public void setupRender() {
 
         allRoleTypes = new ArrayList<String>();
@@ -135,7 +133,7 @@ public class AddNewUser {
             messageText = messages.get("messageSuccess");
             cssClass = "messageSuccess";
             ajaxResponseRenderer.addRender("messageZone", messageZone);
-
+            
             onSelectedFromResetUser();
 
         } catch (HibernateException e) {
@@ -144,7 +142,7 @@ public class AddNewUser {
             ajaxResponseRenderer.addRender("messageZone", messageZone);
         }
     }
-
+ 
     public Object onSelectedFromResetUser() {
         firstName = null;
         lastName = null;
@@ -166,4 +164,26 @@ public class AddNewUser {
                 + "  $(\".close_btn_message\").hide(); \n"
                 + "        });");
     }
+    
+    public void setInitialDataToEdit(long userID) {
+        newUser = (User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID", userID)).uniqueResult();
+
+        firstName = newUser.getFirstname();
+        lastName = newUser.getLastname();
+        username = newUser.getUsername();
+        password = newUser.getPassword();
+        email = newUser.getEmail();
+        birthday = newUser.getBirthday();
+
+        if (newUser.getRoleType() == UserType.ADMIN.getCode()) {
+            selectRoleType = "Admin";
+        } else if (newUser.getRoleType() == UserType.MODERATOR.getCode()) {
+            selectRoleType = "Moderator";
+        } else if (newUser.getRoleType() == UserType.CONTRIBUTOR.getCode()) {
+            selectRoleType = "Contributor";
+        } else if (newUser.getRoleType() == UserType.USER.getCode()) {
+            selectRoleType = "User";
+        }
+    }
+    
 }

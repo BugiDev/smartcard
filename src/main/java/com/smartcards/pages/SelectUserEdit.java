@@ -14,6 +14,7 @@ import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
@@ -59,6 +60,8 @@ public class SelectUserEdit {
     private long selectedUserID;
     @Component(id = "deleteForm")
     private Form deleteForm;
+    @InjectPage
+    private EditUser editUserPage;
 
     // The code
     void setupRender() {
@@ -83,9 +86,10 @@ public class SelectUserEdit {
     }
 
     public Object onEditUser(long userID) {
-        return null;
+        editUserPage.setInitialDataToEdit(userID);
+        return editUserPage;
     }
-    
+
     @CommitAfter
     public Object onSubmitFromDeleteForm() {
         try {

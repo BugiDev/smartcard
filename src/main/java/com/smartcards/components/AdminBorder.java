@@ -9,6 +9,7 @@ import com.smartcards.pages.NewCardsUsers;
 import com.smartcards.pages.SelectCardEdit;
 import com.smartcards.pages.SelectSubjectEdit;
 import com.smartcards.pages.SelectUserEdit;
+import com.smartcards.pages.YourProfile;
 import com.smartcards.util.UserType;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -53,6 +54,8 @@ public class AdminBorder {
     private SelectSubjectEdit selectSubjectEdit;
     @InjectPage
     private AddNewUser addNewUser;
+    @InjectPage
+    private YourProfile yourProfile;
 
     public boolean getTestIsAdmin() {
         if (asoUser.getRoleType() == UserType.ADMIN.getCode()) {
@@ -104,6 +107,10 @@ public class AdminBorder {
         if (menuType.equalsIgnoreCase("newUser")) {
 
             return addNewUser;
+        }
+        if (menuType.equalsIgnoreCase("yourProfile")) {
+
+            return yourProfile;
         }
         return null;
     }

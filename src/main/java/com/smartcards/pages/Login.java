@@ -1,6 +1,7 @@
 package com.smartcards.pages;
 
 import com.smartcards.entities.User;
+import java.util.Date;
 import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.PersistenceConstants;
@@ -14,13 +15,12 @@ import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Import(stylesheet = {"context:css/login_style.css"}, library = {"context:js/jquery-1.5.2.min.js", "context:js/login_onStart.js"})
 public class Login {
@@ -55,17 +55,21 @@ public class Login {
     @Inject
     private Block loginErrorBlock;
 
-    void setupRender(){
+    void setupRender() {
         username = null;
         password = null;
     }
-    
+
+    @CommitAfter
     public Object onSubmit() {
         loginErrorMessage = "";
         List resaultList = hibernate.createCriteria(User.class).add(Restrictions.eq("username", username)).add(Restrictions.eq("password", password)).add(Restrictions.eq("userActive", true)).list();
 
         if (resaultList.size() > 0) {
             User tempUser = (User) resaultList.get(0);
+            tempUser.setLastLogedIn(new Date());
+            hibernate.update(tempUser);
+            hibernate.flush();
 
             if (tempUser.getUserConfirmed()) {
                 asoUser = tempUser;

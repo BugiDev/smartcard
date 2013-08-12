@@ -64,6 +64,8 @@ public class NewCardsUsers {
     private long selectedUserID;
     @InjectPage
     private EditCard editCardPage;
+    @InjectPage
+    private EditUser editUserPage;
 
     // The code
     void setupRender() {
@@ -149,7 +151,8 @@ public class NewCardsUsers {
     }
 
     public Object onEditUser(long userID) {
-        return null;
+        editUserPage.setInitialDataToEdit(userID);
+        return editUserPage;
     }
 
     @CommitAfter

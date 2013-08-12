@@ -1,7 +1,5 @@
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 <t:content>
-    <div>
-        ${result}
-    </div>
+        <span>${result}</span>
 </t:content>
 </html>

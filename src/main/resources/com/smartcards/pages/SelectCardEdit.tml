@@ -36,10 +36,10 @@
          <t:jquery.dialog t:clientId="deleteDialog">
 
             <t:form t:id="deleteForm">
-                <div class="dialog_text_container">Are you sure you want to delete this card?</div>
+                <div class="dialog_text_container">${message:deleteCard}</div>
                 <div class="dialog_btn_container">
                     <input class="alt_btn_preview" t:type="submit" t:id="confirmDelete" value="Confirm Delete" />
-                    <span id="cancleDelete" class="alt_btn">Cancle</span>
+                    <span id="cancleDelete" class="alt_btn">${message:cancle}</span>
                 </div>
             </t:form>
 

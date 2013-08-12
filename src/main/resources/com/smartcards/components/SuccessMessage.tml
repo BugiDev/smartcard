@@ -4,7 +4,7 @@
     <t:content>
         <div class="${cssClass}">
             ${text}
-            <a class="tooltipMessage"><div class="close_btn_message"> </div><span>Close Message <br/> Window</span></a>
+            <a class="tooltipMessage"><div class="close_btn_message"> </div><span>${message:closeMessage1}<br/>${message:closeMessage2}</span></a>
         </div>
     </t:content> 
 </html>

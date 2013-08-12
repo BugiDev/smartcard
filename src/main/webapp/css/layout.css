@@ -1151,3 +1151,7 @@ margin-top: 60px;
     border-radius:6px; /* round corners */
     font-weight: bold;
 }
+
+.myProfile h3, .myProfile h4 {
+    display: inline-block;
+}

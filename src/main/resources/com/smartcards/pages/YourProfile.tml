@@ -1,0 +1,67 @@
+<html t:type="adminborder" title="About smartcards"
+      t:pageTitle="${message:pageTitle}"
+      t:tabTitle="${message:tabTitle}"
+      t:breadcrumb="${message:breadcrumb}"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <section id="main" class="column">
+
+        <article class="module width_full">
+
+            <header><h3>${message:tabTitle}</h3>
+            </header>
+
+            <div class="myProfile">
+                
+                <table>
+                    <tbody>
+                        <tr>
+                            <td> <h3>${message:firstName}</h3></td>
+                            <td> <h4>${asoUser.firstName}</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h3>${message:lastName}</h3></td>
+                            <td><h4>${asoUser.lastName}</h4></td>
+                        </tr>
+                                                <tr>
+                            <td><h3>${message:username}</h3></td>
+                            <td><h4>${asoUser.username}</h4></td>
+                        </tr>
+                                                <tr>
+                            <td><h3>${message:password}</h3></td>
+                            <td><h4>${asoUser.password}</h4></td>
+                        </tr>
+                                                <tr>
+                            <td><h3>${message:birthday}</h3></td>
+                            <td><h4>${asoUser.birthday}</h4></td>
+                        </tr>
+                                                <tr>
+                            <td><h3>${message:lastLogedIn}</h3></td>
+                            <td><h4>${asoUser.lastLogedIn}</h4></td>
+                        </tr>
+                                                <tr>
+                            <td><h3>${message:dailyCounter}</h3></td>
+                            <td><h4>${asoUser.dailyCounter}</h4></td>
+                        </tr>
+                                                <tr>
+                            <td><h3>${message:roleType}</h3></td>
+                            <td><h4><t:showRoleType userRoleType="asoUser.roleType"> </t:showRoleType></h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <footer>
+            </footer>
+        </article> 
+
+        <!--end of content manager article--> 
+
+        <div class="clear"></div>
+
+        <div class="spacer"></div>
+
+    </section>
+
+</html>
