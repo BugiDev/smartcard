@@ -127,7 +127,7 @@ public class EditUser {
             newUser.setLastLogedIn(new Date());
             newUser.setUserActive(true);
             newUser.setUserConfirmed(false);
-            hibernate.save(newUser);
+            hibernate.update(newUser);
             hibernate.flush();
 
             messageText = messages.get("messageSuccess");

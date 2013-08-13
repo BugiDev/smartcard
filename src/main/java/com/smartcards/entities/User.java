@@ -68,6 +68,22 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(String username, String password, String email, String firstname, String lastname, Date birthday, int roleType, boolean userConfirmed, int dailyCounter, Date lastLogedIn, boolean userActive) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthday = birthday;
+        this.roleType = roleType;
+        this.userConfirmed = userConfirmed;
+        this.dailyCounter = dailyCounter;
+        this.lastLogedIn = lastLogedIn;
+        this.userActive = userActive;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
