@@ -4,7 +4,6 @@
  */
 package com.smartcards.rest;
 
-import com.smartcards.entities.Card;
 import com.smartcards.entities.User;
 import java.util.Date;
 import javax.ws.rs.FormParam;
@@ -16,7 +15,6 @@ import javax.ws.rs.core.Response;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
-import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;

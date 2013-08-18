@@ -13,7 +13,7 @@ $(document).ready(function() {
         $( "#deleteDialog" ).dialog( "option", "modal", true );
         var cardID = $( event.currentTarget ).attr( 'cardid' )
         
-        $.get('/smartcard/newcardsusers:selectCard/'+cardID, function(data) {
+        $.get('/smartcards/newcardsusers:selectCard/'+cardID, function(data) {
             });
     
     });
@@ -32,7 +32,7 @@ $(document).ready(function() {
         $( "#deleteDialogUser" ).dialog( "option", "modal", true );
         var userID = $( event.currentTarget ).attr( 'userid' )
         
-        $.get('/smartcard/newcardsusers:selectUser/'+userID, function(data) {
+        $.get('/smartcards/newcardsusers:selectUser/'+userID, function(data) {
             });
     
     });

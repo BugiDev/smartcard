@@ -131,7 +131,7 @@ public class NewCardsUsers {
         }
         return this;
     }
-
+ 
     public void onSelectCard(long selected) {
         selectedCardID = selected;
     }

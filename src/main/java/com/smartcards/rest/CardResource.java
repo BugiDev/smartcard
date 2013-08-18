@@ -16,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -32,6 +33,8 @@ public class CardResource {
     private Session hibernate;
     private List<Card> cards;
     private Card card;
+    @Inject
+    private HibernateSessionManager manager;
 
     @POST
     @Path("/getAllCardsForSubject")
@@ -75,6 +78,23 @@ public class CardResource {
 
         return card;
     }
-    
-   
+
+    @POST
+    @Path("/rateCard")
+    @Produces({"application/json"})
+    public Card rateCard(@FormParam("cardID") long cardID, @FormParam("rating") int rating) {
+
+        card = (Card) hibernate.createCriteria(Card.class).add(Restrictions.eq("cardID", cardID)).uniqueResult();
+        card.setCardNumRaters(card.getCardNumRaters() + 1);
+        card.setCardRatingTotal(card.getCardRatingTotal() + rating);
+        card.setUser(null);
+        card.setSubject(null);
+        hibernate.flush();
+        manager.commit();
+        if (card == null) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+
+        return card;
+    }
 }
