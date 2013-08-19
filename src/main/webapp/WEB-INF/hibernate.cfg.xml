@@ -9,7 +9,7 @@
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost/smartcard</property>
-		<property name="connection.username">user</property>
+		<property name="connection.username">root</property>
 		<property name="connection.password">password</property>
 
 		<property name="connection.pool_size">5</property>

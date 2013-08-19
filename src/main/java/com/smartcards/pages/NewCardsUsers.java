@@ -4,6 +4,7 @@ import com.smartcards.entities.Card;
 import com.smartcards.entities.User;
 import com.smartcards.services.ProtectedPage;
 import com.smartcards.util.CardStatusType;
+import com.smartcards.util.SendMail;
 import com.smartcards.util.UserType;
 import java.util.List;
 import org.apache.tapestry5.PersistenceConstants;
@@ -66,6 +67,8 @@ public class NewCardsUsers {
     private EditCard editCardPage;
     @InjectPage
     private EditUser editUserPage;
+    
+    SendMail mailZaSlanje = null;
 
     // The code
     void setupRender() {
@@ -163,6 +166,8 @@ public class NewCardsUsers {
             user.setUserConfirmed(true);
             hibernate.update(user);
             hibernate.flush();
+            
+            mailZaSlanje = new SendMail("Your account has been created!!!","Thank you for creating an accoutn. Your username is: " + user.getUsername() + "and password is: " + user.getPassword(),user.getEmail());
         } catch (HibernateException e) {
             return this;
         }
