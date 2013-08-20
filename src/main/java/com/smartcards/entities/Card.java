@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.smartcards.entities;
 
 import java.io.Serializable;
@@ -15,7 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
- *
+ * Klasa Card predstavlja entitet koji će biti sačuvan u bazi.
+ * Implementira interface Serializable koji je neophodan za serializaciju podataka pri čuvanju i čitanju podataka iz baze.
  * @author Bogdan Begovic
  */
 @Entity
@@ -32,10 +30,10 @@ public class Card implements Serializable{
     @Column(name = "Card_answer")
     private String cardAnswer;
     @Column(name = "Card_rating_total")
-    private int cardRatingTotal;
+    private float cardRatingTotal;
     @Basic(optional = false)
     @Column(name = "Card_num_raters")
-    private int cardNumRaters;
+    private float cardNumRaters;
     @Basic(optional = false)
     @Column(name = "Card_status")
     private int cardStatus;
@@ -47,6 +45,9 @@ public class Card implements Serializable{
     @JoinColumn(name="Subject_ID")
     private Subject subject;
     
+    /**
+     * Prazan konstruktor
+     */
     public Card() {
     }
 
@@ -76,6 +77,7 @@ public class Card implements Serializable{
     }
     
     /**
+     * Standardni getter.
      * @return the cardID
      */
     public Long getCardID() {
@@ -83,6 +85,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni setter.
      * @param cardID the cardID to set
      */
     public void setCardID(Long cardID) {
@@ -90,6 +93,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni getter.
      * @return the cardQuestion
      */
     public String getCardQuestion() {
@@ -97,6 +101,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni setter.
      * @param cardQuestion the cardQuestion to set
      */
     public void setCardQuestion(String cardQuestion) {
@@ -104,6 +109,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni getter.
      * @return the cardAnswer
      */
     public String getCardAnswer() {
@@ -111,6 +117,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni setter.
      * @param cardAnswer the cardAnswer to set
      */
     public void setCardAnswer(String cardAnswer) {
@@ -118,34 +125,39 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni getter.
      * @return the cardRatingTotal
      */
-    public int getCardRatingTotal() {
+    public float getCardRatingTotal() {
         return cardRatingTotal;
     }
 
     /**
+     * Standardni setter.
      * @param cardRatingTotal the cardRatingTotal to set
      */
-    public void setCardRatingTotal(int cardRatingTotal) {
+    public void setCardRatingTotal(float cardRatingTotal) {
         this.cardRatingTotal = cardRatingTotal;
     }
 
     /**
+     * Standardni getter.
      * @return the cardNumRaters
      */
-    public int getCardNumRaters() {
+    public float getCardNumRaters() {
         return cardNumRaters;
     }
 
     /**
+     * Standardni setter.
      * @param cardNumRaters the cardNumRaters to set
      */
-    public void setCardNumRaters(int cardNumRaters) {
+    public void setCardNumRaters(float cardNumRaters) {
         this.cardNumRaters = cardNumRaters;
     }
 
     /**
+     * Standardni getter.
      * @return the cardStatus
      */
     public int getCardStatus() {
@@ -153,6 +165,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni setter.
      * @param cardStatus the cardStatus to set
      */
     public void setCardStatus(int cardStatus) {
@@ -160,6 +173,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni getter.
      * @return the user
      */
     public User getUser() {
@@ -167,6 +181,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni setter.
      * @param user the user to set
      */
     public void setUser(User user) {
@@ -174,6 +189,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni getter.
      * @return the subject
      */
     public Subject getSubject() {
@@ -181,6 +197,7 @@ public class Card implements Serializable{
     }
 
     /**
+     * Standardni setter.
      * @param subject the subject to set
      */
     public void setSubject(Subject subject) {

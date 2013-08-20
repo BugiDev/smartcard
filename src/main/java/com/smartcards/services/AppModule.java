@@ -28,6 +28,10 @@ import org.slf4j.Logger;
  */
 public class AppModule {
 
+    /**
+     *
+     * @param binder
+     */
     public static void bind(ServiceBinder binder) {
         binder.bind(ProtectPageService.class).withId("ProtectPageService");
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
@@ -37,6 +41,10 @@ public class AppModule {
         // invoking the constructor.
     }
 
+    /**
+     *
+     * @param configuration
+     */
     public static void contributeFactoryDefaults(
             MappedConfiguration<String, Object> configuration) {
         // The application version number is incorprated into URLs for some
@@ -48,6 +56,10 @@ public class AppModule {
         configuration.override(SymbolConstants.APPLICATION_VERSION, "1.0.0-SNAPSHOT");
     }
 
+    /**
+     *
+     * @param configuration
+     */
     public static void contributeApplicationDefaults(
             MappedConfiguration<String, Object> configuration) {
         // Contributions to ApplicationDefaults will override any contributions to
@@ -60,12 +72,21 @@ public class AppModule {
 
     }
     
+    /**
+     *
+     * @param advisor
+     * @param receiver
+     */
     @Match("*DAO")
     public static void adviseTransactions(HibernateTransactionAdvisor advisor, MethodAdviceReceiver receiver)
     {
         advisor.addTransactionCommitAdvice(receiver);
     }
 
+    /**
+     *
+     * @param configuration
+     */
     @Contribute(MarkupRenderer.class)
     public static void deactiveDefaultCSS(OrderedConfiguration<MarkupRendererFilter> configuration) {
         configuration.override("InjectDefaultStylesheet", null);
@@ -91,6 +112,8 @@ public class AppModule {
      * the service interface and would be "RequestFilter". Since Tapestry
      * already defines a service named "RequestFilter" we use an explicit
      * service id that we can reference inside the contribution method.
+     * @param log
+     * @return  
      */
     public RequestFilter buildTimingFilter(final Logger log) {
         return new RequestFilter() {
@@ -118,6 +141,8 @@ public class AppModule {
      * is how we extend Tapestry using the timing filter. A common use for this
      * kind of filter is transaction management or security. The
      *
+     * @param configuration 
+     * @param filter 
      * @Local annotation selects the desired service by type, but only from the
      * same module. Without
      * @Local, there would be an error due to the other service(s) that

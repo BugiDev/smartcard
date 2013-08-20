@@ -19,6 +19,10 @@ import org.slf4j.Logger;
  */
 public class DevelopmentModule
 {
+    /**
+     *
+     * @param configuration
+     */
     public static void contributeApplicationDefaults(
             MappedConfiguration<String, Object> configuration)
     {

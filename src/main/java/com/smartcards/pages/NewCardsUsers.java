@@ -25,6 +25,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa NewCardsUsers predstavlja home stranicu za admin panel. Pravo pristupa
+ * imaju svi tipovi korisnika. Javascript klasa selectCardForDelete je dodata
+ * kako bi se omogućilo brisanje kartica i korisnika.
  *
  * @author Bogdan Begovic
  */
@@ -67,10 +70,12 @@ public class NewCardsUsers {
     private EditCard editCardPage;
     @InjectPage
     private EditUser editUserPage;
-    
     SendMail mailZaSlanje = null;
 
-    // The code
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da kreira i napuni grid sa podacima.
+     */
     void setupRender() {
 
         myModel = beanModelSource.createDisplayModel(Card.class, messages);
@@ -82,32 +87,41 @@ public class NewCardsUsers {
         myModel.get("cardQuestion").sortable(false);
         myModel.get("cardAnswer").sortable(false);
 
-        // Get all persons - ask business service to find them (from the database)
-
         cards = hibernate.createCriteria(Card.class).add(Restrictions.eq("cardStatus", 1)).list();
 
         userModel = beanModelSource.createDisplayModel(User.class, messages);
         userModel.add("action", null);
 
-        userModel.include("firstName", "lastName", "email", "username", "password", "dailyCounter", "lastLogedIn", "action");
+        userModel.include("firstName", "lastName", "email", "username", "password", "lastLogedIn", "action");
         userModel.get("firstName").sortable(false);
         userModel.get("lastName").sortable(false);
         userModel.get("email").sortable(false);
         userModel.get("username").sortable(false);
         userModel.get("password").sortable(false);
-        userModel.get("dailyCounter").sortable(false);
         userModel.get("lastLogedIn").sortable(false);
-
-        // Get all persons - ask business service to find them (from the database)
 
         users = hibernate.createCriteria(User.class).add(Restrictions.eq("userConfirmed", false)).list();
     }
 
+    /**
+     * Metoda kojom se bira entitet za editovanje, a njegov ID prosleđuje se
+     * stranici za editovanje.
+     *
+     * @param cardID
+     * @return Page object
+     */
     public Object onEdit(long cardID) {
         editCardPage.setInitialDataToEdit(cardID);
         return editCardPage;
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za odobravanje
+     * kartica.
+     *
+     * @param cardID
+     * @return istu stranicu (refresh)
+     */
     @CommitAfter
     public Object onAprove(long cardID) {
 
@@ -122,6 +136,11 @@ public class NewCardsUsers {
         return this;
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za brisanje kartica.
+     *
+     * @return istu stranicu (refresh)
+     */
     @CommitAfter
     public Object onSubmitFromDeleteForm() {
         try {
@@ -134,11 +153,22 @@ public class NewCardsUsers {
         }
         return this;
     }
- 
+
+    /**
+     * Metoda kojom se bira entitet za brisanje. Postavlja ID entiteta.
+     *
+     * @param selected
+     */
     public void onSelectCard(long selected) {
         selectedCardID = selected;
     }
 
+    /**
+     * Metoda koja proverava da li ulogovani korisnik ima rolu admin ili
+     * moderator i u zavisnosti od toga, vraća boolean vrednost.
+     *
+     * @return boolean
+     */
     public boolean getTestIsAdminOrModerator() {
         if ((asoUser.getRoleType() == UserType.ADMIN.getCode()) || (asoUser.getRoleType() == UserType.MODERATOR.getCode())) {
             return true;
@@ -146,6 +176,12 @@ public class NewCardsUsers {
         return false;
     }
 
+    /**
+     * Metoda koja proverava da li ulogovani korisnik ima rolu admin i u
+     * zavisnosti od toga, vraća boolean vrednost.
+     *
+     * @return boolean
+     */
     public boolean getTestIsAdmin() {
         if (asoUser.getRoleType() == UserType.ADMIN.getCode()) {
             return true;
@@ -153,11 +189,25 @@ public class NewCardsUsers {
         return false;
     }
 
+    /**
+     * Metoda kojom se bira entitet za editovanje, a njegov ID prosleđuje se
+     * stranici za editovanje.
+     *
+     * @param userID
+     * @return Page object
+     */
     public Object onEditUser(long userID) {
         editUserPage.setInitialDataToEdit(userID);
         return editUserPage;
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za odobravanje
+     * korisnika.
+     *
+     * @param cardID
+     * @return istu stranicu (refresh)
+     */
     @CommitAfter
     public Object onAproveUser(long userID) {
 
@@ -166,14 +216,20 @@ public class NewCardsUsers {
             user.setUserConfirmed(true);
             hibernate.update(user);
             hibernate.flush();
-            
-            mailZaSlanje = new SendMail("Your account has been created!!!","Thank you for creating an accoutn. Your username is: " + user.getUsername() + " and password is: " + user.getPassword(),user.getEmail());
+
+            mailZaSlanje = new SendMail("Your account has been created!!!", "Thank you for creating an accoutn. Your username is: " + user.getUsername() + " and password is: " + user.getPassword(), user.getEmail());
         } catch (HibernateException e) {
             return this;
         }
         return this;
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za brisanje
+     * korisnika.
+     *
+     * @return istu stranicu (refresh)
+     */
     @CommitAfter
     public Object onSubmitFromDeleteUserForm() {
         try {
@@ -188,8 +244,12 @@ public class NewCardsUsers {
         return this;
     }
 
+    /**
+     * Metoda kojom se bira entitet za brisanje. Postavlja ID entiteta.
+     *
+     * @param selected
+     */
     public void onSelectUser(long selected) {
         selectedUserID = selected;
-        System.out.println("SELECTED USER " + selectedUserID);
     }
 }

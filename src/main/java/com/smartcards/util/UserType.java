@@ -1,15 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.util;
 
 /**
+ * Enum UserType koji predstavlja String reprezentaciju tipova korisnika.
  *
  * @author Bogdan Begovic
  */
 public enum UserType {
 
+    /**
+     * Postavljanje kodova za sve korisnike.
+     */
     USER(1),
     ADMIN(2),
     MODERATOR(3),
@@ -17,14 +17,14 @@ public enum UserType {
     private int code;
 
     /*
-     * Private constructor that takes the code and associate it with type of issue.
+     * Privatni konstruktor koji prima kodove i spaja ih sa odgovarajućom String reprezentacijom.
      */
     private UserType(int c) {
         code = c;
     }
 
     /**
-     * Method that gets the code
+     * Metoda koja vraća kod
      *
      * @return code type of long
      */

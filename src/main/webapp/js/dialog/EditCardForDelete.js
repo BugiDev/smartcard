@@ -13,7 +13,7 @@ $(document).ready(function() {
         $( "#deleteDialog" ).dialog( "option", "modal", true );
         var cardID = $( event.currentTarget ).attr( 'cardid' )
         
-        $.get('/smartcards/selectcardedit:selectCard/'+cardID, function(data) {
+        $.get(selectCardForDeleteEditURL+cardID, function(data) {
             });
     
     });

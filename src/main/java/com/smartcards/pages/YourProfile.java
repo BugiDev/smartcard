@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.smartcards.pages;
 
 import com.smartcards.components.ShowRoleType;
@@ -11,7 +8,8 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 
 /**
- *
+ * Klasa koja predstavlja stranicu Your profile.
+ * Služi za prikaz profilnih podataka korisnika.
  * @author Bogdan
  */ 
 public class YourProfile {

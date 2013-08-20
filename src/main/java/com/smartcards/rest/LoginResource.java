@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.rest;
 
 import com.smartcards.entities.User;
@@ -19,6 +15,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa LoginResource kojom se expose-uju RESTful servisi. Kao početni segment
+ * URL-a, dodeljena je vrednost /authenticatet kako bi se obeležilo da ovaj servis radi
+ * samo sa login-om.
  *
  * @author Bogdan Begovic
  */
@@ -33,6 +32,14 @@ public class LoginResource {
     @Inject
     private HibernateSessionManager manager;
 
+    /**
+     * Metoda kojom se korisnici login-uju. 
+     * Prosleđuju se podaci za username i password a vraća se objekat tipa User.
+     * URL segment za ovu metodu je /getAllSubjects.
+     * @param username
+     * @param password
+     * @return User
+     */
     @POST
     @Produces({"application/json"})
     public User authenticate(@FormParam("username") String username, @FormParam("password") String password) {

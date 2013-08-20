@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.pages;
 
 import com.smartcards.entities.User;
@@ -28,9 +24,10 @@ import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa AddNewUser koja je zaslužna za prikaz i logiku AddNewUser strane. Služi
+ * za dodavanje korisnika. Pristup ovoj stranici imaju samo ADMIN korisnici.
  *
  * @author Bogdan
  */
@@ -94,6 +91,10 @@ public class AddNewUser {
     @Property
     private User asoUser;
 
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da kreira i napuni listu svih tipova korisnika vrednostima.
+     */
     public void setupRender() {
 
         allRoleTypes = new ArrayList<String>();
@@ -103,6 +104,10 @@ public class AddNewUser {
         allRoleTypes.add("User");
     }
 
+    /**
+     * Metoda koja handle-uje submit posle uspešne provere na formi. Zaslužna je
+     * za editovanje korisnika i vraćanje poruka o uspešnosti ili grešci.
+     */
     @CommitAfter
     public void onSuccess() {
 
@@ -125,7 +130,6 @@ public class AddNewUser {
                 newUser.setRoleType(UserType.USER.getCode());
             }
 
-            newUser.setDailyCounter(10);
             newUser.setLastLogedIn(new Date());
             newUser.setUserActive(true);
             newUser.setUserConfirmed(false);
@@ -145,6 +149,12 @@ public class AddNewUser {
         }
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za resetovanje
+     * podataka.
+     *
+     * @return istu stranicu (refresh)
+     */
     public Object onSelectedFromResetUser() {
         firstName = null;
         lastName = null;
@@ -157,6 +167,10 @@ public class AddNewUser {
 
     }
 
+    /**
+     * Metoda kojom se dodaje deo javascript koda zaslužnog za zatvaranje
+     * message komponente.
+     */
     public void onAddJSMessage() {
         javaScriptSupport.addScript(" \n"
                 + "        \n"

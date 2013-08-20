@@ -1,21 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.pages;
 
-import com.smartcards.components.ShowRoleType;
-import com.smartcards.entities.Card;
 import com.smartcards.entities.Subject;
 import com.smartcards.entities.User;
 import com.smartcards.services.ProtectedPage;
-import com.smartcards.util.CardStatusType;
 import com.smartcards.util.UserType;
 import java.util.List;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -31,6 +23,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa koja služi za prikaz i selektovanje kategorija koji se edituju. Pravo
+ * pristupa imaju samo ADMIN i MODERATOR korisnici. Klasa takođe dodaje i
+ * javascript klasu EditSubjectForDelete.js kako bi omogućila selekciju
+ * korisnika za brisanje.
  *
  * @author Bogdan Begovic
  */
@@ -63,7 +59,10 @@ public class SelectSubjectEdit {
     @Component(id = "deleteForm")
     private Form deleteForm;
 
-    // The code
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da kreira i napuni grid sa podacima.
+     */
     void setupRender() {
 
         subjectModel = beanModelSource.createDisplayModel(Subject.class, messages);
@@ -77,11 +76,24 @@ public class SelectSubjectEdit {
 
     }
 
+    /**
+     * Metoda kojom se bira entitet za editovanje, a njegov ID prosleđuje se
+     * stranici za editovanje.
+     *
+     * @param subjectID
+     * @return Page object
+     */
     public Object onEditSubject(long subjectID) {
         editSubjectPage.setInitialDataToEdit(subjectID);
         return editSubjectPage;
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za brisanje
+     * kategorija.
+     *
+     * @return istu stranicu (refresh)
+     */
     @CommitAfter
     public Object onSubmitFromDeleteForm() {
         try {
@@ -95,8 +107,12 @@ public class SelectSubjectEdit {
         return this;
     }
 
+    /**
+     * Metoda kojom se bira entitet za brisanje. Postavlja ID entiteta.
+     *
+     * @param selected
+     */
     public void onSelectSubject(long selected) {
         selectedSubjectID = selected;
-        System.out.println("SELECTED ID: " + selected);
     }
 }

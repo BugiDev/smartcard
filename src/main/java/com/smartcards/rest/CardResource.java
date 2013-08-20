@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.rest;
 
 import com.smartcards.entities.Card;
@@ -9,7 +5,6 @@ import com.smartcards.entities.Subject;
 import com.smartcards.util.CardStatusType;
 import java.util.List;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,6 +17,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa CardResource kojom se expose-uju RESTful servisi. Kao početni segment
+ * URL-a, dodeljena je vrednost /card kako bi se obeležilo da ovaj servis radi
+ * samo sa karticama.
  *
  * @author Bogdan Begovic
  */
@@ -36,6 +34,14 @@ public class CardResource {
     @Inject
     private HibernateSessionManager manager;
 
+    /**
+     * Metoda kojom se gettuju sve kartice iz određene kategorije. Prosleđuje se
+     * ID kategorije a vraća se lista kartica. URL segment za ovu metodu je
+     * /getAllSubjects.
+     *
+     * @param subjectID
+     * @return List<Card>
+     */
     @POST
     @Path("/getAllCardsForSubject")
     @Produces({"application/json"})
@@ -62,39 +68,30 @@ public class CardResource {
         return cards;
     }
 
-    @POST
-    @Path("/getCardByID")
-    @Produces({"application/json"})
-    public Card getCardByID(@FormParam("cardID") long cardID) {
-
-        card = (Card) hibernate.createCriteria(Card.class).add(Restrictions.eq("cardID", cardID)).uniqueResult();
-
-        card.setUser(null);
-        card.setSubject(null);
-
-        if (card == null) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        }
-
-        return card;
-    }
-
+    /**
+     * Metoda kojom se rate-uje određena kartica. Prosleđuje se ID kartice i rating a
+     * vraća se poruka o uspehu. URL segment za ovu metodu je /rateCard.
+     *
+     * @param cardID
+     * @param rating
+     * @return String
+     */
     @POST
     @Path("/rateCard")
     @Produces({"application/json"})
-    public Card rateCard(@FormParam("cardID") long cardID, @FormParam("rating") int rating) {
+    public String rateCard(@FormParam("cardID") long cardID, @FormParam("rating") float rating) {
 
         card = (Card) hibernate.createCriteria(Card.class).add(Restrictions.eq("cardID", cardID)).uniqueResult();
-        card.setCardNumRaters(card.getCardNumRaters() + 1);
+        card.setCardNumRaters(card.getCardNumRaters() + 1.0f);
+        System.out.println("RATING " + rating);
         card.setCardRatingTotal(card.getCardRatingTotal() + rating);
-        card.setUser(null);
-        card.setSubject(null);
+        System.out.println("TOTAL RATING " + card.getCardRatingTotal());
         hibernate.flush();
         manager.commit();
         if (card == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
 
-        return card;
+        return "true";
     }
 }

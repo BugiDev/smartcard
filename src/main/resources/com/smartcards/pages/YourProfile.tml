@@ -41,10 +41,6 @@
                             <td><h4>${asoUser.lastLogedIn}</h4></td>
                         </tr>
                                                 <tr>
-                            <td><h3>${message:dailyCounter}</h3></td>
-                            <td><h4>${asoUser.dailyCounter}</h4></td>
-                        </tr>
-                                                <tr>
                             <td><h3>${message:roleType}</h3></td>
                             <td><h4><t:showRoleType userRoleType="asoUser.roleType"> </t:showRoleType></h4></td>
                         </tr>

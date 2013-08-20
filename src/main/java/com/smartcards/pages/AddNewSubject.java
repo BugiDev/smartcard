@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.pages;
 
 import com.smartcards.entities.Subject;
@@ -28,8 +24,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
+ * Klasa AddNewSubject koja je zaslužna za prikaz i logiku AddNewSubject strane.
+ * Služi za dodavanje kategorija.
  *
- * @author Bogdan Begovic
+ * @author Bogdan
  */
 @ProtectedPage(getRoles = {UserType.ADMIN, UserType.MODERATOR})
 public class AddNewSubject {
@@ -64,11 +62,15 @@ public class AddNewSubject {
     @Property
     private User asoUser;
 
+    /**
+     * Metoda koja handle-uje submit posle uspešne provere na formi. Zaslužna je
+     * za editovanje kategorija i vraćanje poruka o uspešnosti ili grešci.
+     */
     @CommitAfter
     public void onSuccessFromSubjectForm() {
 
         try {
-            
+
             subject = new Subject();
             subject.setSubjectName(subjectInput);
             subject.setSubjectDeleted(false);
@@ -78,7 +80,7 @@ public class AddNewSubject {
             messageText = messages.get("messageSuccess");
             cssClass = "messageSuccess";
             ajaxResponseRenderer.addRender("messageZoneSubject", messageZoneSubject);
-            
+
             onSelectedFromResetSubject();
 
         } catch (HibernateException e) {
@@ -89,12 +91,22 @@ public class AddNewSubject {
 
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za resetovanje
+     * podataka.
+     *
+     * @return istu stranicu (refresh)
+     */
     public Object onSelectedFromResetSubject() {
         subjectInput = null;
         return this;
 
     }
 
+    /**
+     * Metoda kojom se dodaje deo javascript koda zaslužnog za zatvaranje
+     * message komponente.
+     */
     public void onAddJSMessage() {
         javaScriptSupport.addScript(" \n"
                 + "        \n"

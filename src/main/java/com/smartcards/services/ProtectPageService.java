@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author mateja
+ * @author Bogdan
  */
 public class ProtectPageService implements Dispatcher {
     private Logger logger = LoggerFactory.getLogger(Login.class);
@@ -29,12 +29,25 @@ public class ProtectPageService implements Dispatcher {
     private final ComponentClassResolver componentClassResolver;
     private final ComponentSource componentSource;
 
+    /**
+     *
+     * @param asm
+     * @param resolver
+     * @param componentSource
+     */
     public ProtectPageService(ApplicationStateManager asm, ComponentClassResolver resolver, ComponentSource componentSource) {
         this.applicationStateManager = asm;
         this.componentClassResolver = resolver;
         this.componentSource = componentSource;
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     public boolean dispatch(Request request, Response response) throws IOException {
         /*
          * We need to get the Tapestry page requested by the user. So we parse the path extracted from the request
@@ -56,6 +69,14 @@ public class ProtectPageService implements Dispatcher {
         return checkAccess(pageName, request, response);
     }
 
+    /**
+     *
+     * @param pageName
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     public boolean checkAccess(String pageName, Request request, Response response) throws IOException {
         boolean canAccess = true;
 

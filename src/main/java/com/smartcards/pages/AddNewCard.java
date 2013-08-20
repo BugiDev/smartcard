@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.pages;
 
 import com.smartcards.entities.Card;
@@ -36,8 +32,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa AddNewCard koja je zaslužna za prikaz i logiku AddNewCard strane. Služi
+ * za dodavanje kartica.
  *
- * @author Bogdan Begovic
+ * @author Bogdan
  */
 @ProtectedPage(getRoles = {UserType.ADMIN, UserType.MODERATOR, UserType.CONTRIBUTOR})
 @Import(stylesheet = {"context:css/shCore.css", "context:css/cardStyle.css", "context:css/tooltip.css"}, library = {"context:js/jquery.min.js", "context:js/jquery.flippy.min.js", "context:js/shBrushXml.js", "context:js/shBrushJScript.js", "context:js/shCore.js"})
@@ -95,7 +93,11 @@ public class AddNewCard {
     @SessionState
     @Property
     private User asoUser;
- 
+
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da kreira i napuni listu svih kategorija.
+     */
     public void setupRender() {
 
         List<Subject> tmpCategories = hibernate.createCriteria(Subject.class).list();
@@ -106,6 +108,10 @@ public class AddNewCard {
         isJSAdded = false;
     }
 
+    /**
+     * Metoda koja handle-uje submit posle uspešne provere na formi. Zaslužna je
+     * za editovanje kartica i vraćanje poruka o uspešnosti ili grešci.
+     */
     @CommitAfter
     public void onSuccess() {
         if (isPreview) {
@@ -118,18 +124,18 @@ public class AddNewCard {
             try {
                 card.setCardQuestion(cardQuestion);
                 card.setCardAnswer(cardAnswer);
-                card.setCardNumRaters(0);
-                card.setCardRatingTotal(0);
+                card.setCardNumRaters(0f);
+                card.setCardRatingTotal(0f);
                 card.setCardStatus(1);
                 card.setSubject((Subject) hibernate.createCriteria(Subject.class).add(Restrictions.eq("subjectName", selectCategory.toString())).uniqueResult());
-                card.setUser((User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID",asoUser.getUserID())).uniqueResult());
+                card.setUser((User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID", asoUser.getUserID())).uniqueResult());
                 hibernate.save(card);
                 hibernate.flush();
 
                 messageText = messages.get("messageSuccess");
                 cssClass = "messageSuccess";
                 ajaxResponseRenderer.addRender("messageZone", messageZone);
-                
+
                 onSelectedFromResetCard();
 
             } catch (HibernateException e) {
@@ -141,10 +147,21 @@ public class AddNewCard {
         }
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za prikazivanje
+     * preview komponente na strani.
+     *
+     */
     public void onSelectedFromPreviewCard() {
         isPreview = true;
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za resetovanje
+     * podataka.
+     *
+     * @return istu stranicu (refresh)
+     */
     public Object onSelectedFromResetCard() {
         isPreview = false;
         cardQuestion = null;
@@ -153,6 +170,10 @@ public class AddNewCard {
 
     }
 
+    /**
+     * Metoda kojom se dodaje deo javascript koda zaslužnog za resize-ovanje
+     * cele stranice.
+     */
     public void onAddJS() {
         javaScriptSupport.importJavaScriptLibrary(scripts);
         javaScriptSupport.addScript(" $('aside').height($(document).height()-80);\n"
@@ -165,6 +186,10 @@ public class AddNewCard {
         isJSAdded = true;
     }
 
+    /**
+     * Metoda kojom se dodaje deo javascript koda zaslužnog za zatvaranje
+     * message komponente.
+     */
     public void onAddJSMessage() {
         javaScriptSupport.addScript(" \n"
                 + "        \n"

@@ -29,12 +29,14 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa EditSubject koja je zaslužna za prikaz i logiku EditSubject strane.
+ * Služi za editovanje kategorija.
  *
- * @author Bogdan Begovic
+ * @author Bogdan
  */
 @ProtectedPage(getRoles = {UserType.ADMIN, UserType.MODERATOR})
 public class EditSubject {
-    
+
     @Component(id = "subjectForm")
     private Form subjectForm;
     @InjectComponent
@@ -65,6 +67,10 @@ public class EditSubject {
     @Property
     private User asoUser;
 
+    /**
+     * Metoda koja handle-uje submit posle uspešne provere na formi. Zaslužna je
+     * za editovanje kategorija i vraćanje poruka o uspešnosti ili grešci.
+     */
     @CommitAfter
     public void onSuccessFromSubjectForm() {
 
@@ -85,12 +91,22 @@ public class EditSubject {
 
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za resetovanje
+     * podataka.
+     *
+     * @return istu stranicu (refresh)
+     */
     public Object onSelectedFromResetSubject() {
         subjectInput = null;
         return this;
 
     }
 
+    /**
+     * Metoda kojom se dodaje deo javascript koda zaslužnog za zatvaranje
+     * message komponente.
+     */
     public void onAddJSMessage() {
         javaScriptSupport.addScript(" \n"
                 + "        \n"
@@ -100,8 +116,14 @@ public class EditSubject {
                 + "  $(\".close_btn_message\").hide(); \n"
                 + "        });");
     }
-    
-    public void setInitialDataToEdit(long subjectID){
+
+    /**
+     * Metoda koja, pri učitavanju stranice, uzima entitet za prosleđeni ID i
+     * podešava početne podatke koji se edituju.
+     *
+     * @param subjectID
+     */
+    public void setInitialDataToEdit(long subjectID) {
         subject = (Subject) hibernate.createCriteria(Subject.class).add(Restrictions.eq("subjectID", subjectID)).uniqueResult();
         subjectInput = subject.getSubjectName();
     }

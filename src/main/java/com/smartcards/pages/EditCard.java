@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.pages;
 
 import com.smartcards.entities.Card;
@@ -36,8 +32,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa EditCard koja je zaslužna za prikaz i logiku EditCard strane. Služi za
+ * editovanje kartica.
  *
- * @author Bogdan Begovic
+ * @author Bogdan
  */
 @ProtectedPage(getRoles = {UserType.ADMIN, UserType.MODERATOR})
 @Import(stylesheet = {"context:css/shCore.css", "context:css/cardStyle.css", "context:css/tooltip.css"}, library = {"context:js/jquery.min.js", "context:js/jquery.flippy.min.js", "context:js/shBrushXml.js", "context:js/shBrushJScript.js", "context:js/shCore.js"})
@@ -96,6 +94,10 @@ public class EditCard {
     @Property
     private User asoUser;
 
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da kreira i napuni listu svih kategorija.
+     */
     public void setupRender() {
 
         List<Subject> tmpCategories = hibernate.createCriteria(Subject.class).list();
@@ -106,6 +108,10 @@ public class EditCard {
         isJSAdded = false;
     }
 
+    /**
+     * Metoda koja handle-uje submit posle uspešne provere na formi. Zaslužna je
+     * za editovanje kartica i vraćanje poruka o uspešnosti ili grešci.
+     */
     @CommitAfter
     public void onSuccess() {
         if (isPreview) {
@@ -118,8 +124,8 @@ public class EditCard {
             try {
                 card.setCardQuestion(cardQuestion);
                 card.setCardAnswer(cardAnswer);
-                card.setCardNumRaters(0);
-                card.setCardRatingTotal(0);
+                card.setCardNumRaters(0f);
+                card.setCardRatingTotal(0f);
                 card.setCardStatus(1);
                 card.setSubject((Subject) hibernate.createCriteria(Subject.class).add(Restrictions.eq("subjectName", selectCategory.toString())).uniqueResult());
                 card.setUser((User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID", asoUser.getUserID())).uniqueResult());
@@ -139,10 +145,21 @@ public class EditCard {
         }
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za prikazivanje
+     * preview komponente na strani.
+     *
+     */
     public void onSelectedFromPreviewCard() {
         isPreview = true;
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za resetovanje
+     * podataka.
+     *
+     * @return istu stranicu (refresh)
+     */
     public Object onSelectedFromResetCard() {
         isPreview = false;
         cardQuestion = null;
@@ -151,6 +168,10 @@ public class EditCard {
 
     }
 
+    /**
+     * Metoda kojom se dodaje deo javascript koda zaslužnog za resize-ovanje
+     * cele stranice.
+     */
     public void onAddJS() {
         javaScriptSupport.importJavaScriptLibrary(scripts);
         javaScriptSupport.addScript(" $('aside').height($(document).height()-80);\n"
@@ -163,6 +184,10 @@ public class EditCard {
         isJSAdded = true;
     }
 
+    /**
+     * Metoda kojom se dodaje deo javascript koda zaslužnog za zatvaranje
+     * message komponente.
+     */
     public void onAddJSMessage() {
         javaScriptSupport.addScript(" \n"
                 + "        \n"
@@ -173,6 +198,12 @@ public class EditCard {
                 + "        });");
     }
 
+    /**
+     * Metoda koja, pri učitavanju stranice, uzima entitet za prosleđeni ID i
+     * podešava početne podatke koji se edituju.
+     *
+     * @param cardID
+     */
     public void setInitialDataToEdit(long cardID) {
         card = (Card) hibernate.createCriteria(Card.class).add(Restrictions.eq("cardID", cardID)).uniqueResult();
 

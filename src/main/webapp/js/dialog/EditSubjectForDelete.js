@@ -13,7 +13,7 @@ $(document).ready(function() {
         $( "#deleteDialog" ).dialog( "option", "modal", true );
         var subjectID = $( event.currentTarget ).attr( 'subjectid' )
         
-        $.get('/smartcards/selectsubjectedit:selectSubject/'+subjectID, function(data) {
+        $.get(selectSubjectForDeleteEditURL+subjectID, function(data) {
             });
     
     });

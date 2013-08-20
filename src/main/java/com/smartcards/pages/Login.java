@@ -22,6 +22,12 @@ import org.apache.tapestry5.services.Request;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ * Klasa Login koja je zaslužna za prikaz i logiku login strane. Uključuje
+ * zasebne javascript i css fajlove potrebne za prikaz.
+ *
+ * @author Bogdan
+ */
 @Import(stylesheet = {"context:css/login_style.css"}, library = {"context:js/jquery-1.5.2.min.js", "context:js/login_onStart.js"})
 public class Login {
 
@@ -55,11 +61,21 @@ public class Login {
     @Inject
     private Block loginErrorBlock;
 
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da postavi prazna polja.
+     */
     void setupRender() {
         username = null;
         password = null;
     }
 
+    /**
+     *  Metoda koja handle-uje submit na formi.
+     *  Zaslužna je za proveru uspešnog logina i ispis potencijalnih poruka o grešci.
+     * 
+     * @return Page object, ili u slučaju greške, Block object
+     */
     @CommitAfter
     public Object onSubmit() {
         loginErrorMessage = "";
