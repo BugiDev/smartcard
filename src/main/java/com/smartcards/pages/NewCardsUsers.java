@@ -89,13 +89,12 @@ public class NewCardsUsers {
         userModel = beanModelSource.createDisplayModel(User.class, messages);
         userModel.add("action", null);
 
-        userModel.include("firstName", "lastName", "email", "username", "password", "dailyCounter", "lastLogedIn", "action");
+        userModel.include("firstName", "lastName", "email", "username", "password", "lastLogedIn", "action");
         userModel.get("firstName").sortable(false);
         userModel.get("lastName").sortable(false);
         userModel.get("email").sortable(false);
         userModel.get("username").sortable(false);
         userModel.get("password").sortable(false);
-        userModel.get("dailyCounter").sortable(false);
         userModel.get("lastLogedIn").sortable(false);
 
         // Get all persons - ask business service to find them (from the database)

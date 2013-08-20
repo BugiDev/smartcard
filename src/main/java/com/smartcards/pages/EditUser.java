@@ -122,8 +122,6 @@ public class EditUser {
             } else if (selectRoleType.equalsIgnoreCase("newUser")) {
                 newUser.setRoleType(UserType.USER.getCode());
             }
-
-            newUser.setDailyCounter(10);
             newUser.setLastLogedIn(new Date());
             newUser.setUserActive(true);
             newUser.setUserConfirmed(false);

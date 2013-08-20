@@ -52,9 +52,6 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "User_confirmed")
     private boolean userConfirmed;
-    @Basic(optional = false)
-    @Column(name = "Daily_counter")
-    private int dailyCounter;
     @Basic(optional = true)
     @Column(name = "Last_loged_in")
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -68,7 +65,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String password, String email, String firstname, String lastname, Date birthday, int roleType, boolean userConfirmed, int dailyCounter, Date lastLogedIn, boolean userActive) {
+    public User(String username, String password, String email, String firstname, String lastname, Date birthday, int roleType, boolean userConfirmed, Date lastLogedIn, boolean userActive) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -77,7 +74,6 @@ public class User implements Serializable {
         this.birthday = birthday;
         this.roleType = roleType;
         this.userConfirmed = userConfirmed;
-        this.dailyCounter = dailyCounter;
         this.lastLogedIn = lastLogedIn;
         this.userActive = userActive;
     }
@@ -233,20 +229,6 @@ public class User implements Serializable {
      */
     public void setUserConfirmed(boolean userConfirmed) {
         this.userConfirmed = userConfirmed;
-    }
-
-    /**
-     * @return the dailyCounter
-     */
-    public int getDailyCounter() {
-        return dailyCounter;
-    }
-
-    /**
-     * @param dailyCounter the dailyCounter to set
-     */
-    public void setDailyCounter(int dailyCounter) {
-        this.dailyCounter = dailyCounter;
     }
 
     /**

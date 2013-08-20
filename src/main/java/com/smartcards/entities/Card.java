@@ -32,7 +32,7 @@ public class Card implements Serializable{
     @Column(name = "Card_answer")
     private String cardAnswer;
     @Column(name = "Card_rating_total")
-    private int cardRatingTotal;
+    private float cardRatingTotal;
     @Basic(optional = false)
     @Column(name = "Card_num_raters")
     private int cardNumRaters;
@@ -120,14 +120,14 @@ public class Card implements Serializable{
     /**
      * @return the cardRatingTotal
      */
-    public int getCardRatingTotal() {
+    public float getCardRatingTotal() {
         return cardRatingTotal;
     }
 
     /**
      * @param cardRatingTotal the cardRatingTotal to set
      */
-    public void setCardRatingTotal(int cardRatingTotal) {
+    public void setCardRatingTotal(float cardRatingTotal) {
         this.cardRatingTotal = cardRatingTotal;
     }
 

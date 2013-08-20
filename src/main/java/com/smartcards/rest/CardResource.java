@@ -50,7 +50,7 @@ public class CardResource {
         }
 
         cards = (List<Card>) hibernate.createCriteria(Card.class).add(Restrictions.eq("subject", subject)).add(Restrictions.eq("cardStatus", CardStatusType.APROVED.getCode())).list();
-
+        
         for (Card card : cards) {
             card.setUser(null);
             card.setSubject(null);
@@ -63,38 +63,19 @@ public class CardResource {
     }
 
     @POST
-    @Path("/getCardByID")
-    @Produces({"application/json"})
-    public Card getCardByID(@FormParam("cardID") long cardID) {
-
-        card = (Card) hibernate.createCriteria(Card.class).add(Restrictions.eq("cardID", cardID)).uniqueResult();
-
-        card.setUser(null);
-        card.setSubject(null);
-
-        if (card == null) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        }
-
-        return card;
-    }
-
-    @POST
     @Path("/rateCard")
     @Produces({"application/json"})
-    public Card rateCard(@FormParam("cardID") long cardID, @FormParam("rating") int rating) {
+    public String rateCard(@FormParam("cardID") long cardID, @FormParam("rating") float rating) {
 
         card = (Card) hibernate.createCriteria(Card.class).add(Restrictions.eq("cardID", cardID)).uniqueResult();
         card.setCardNumRaters(card.getCardNumRaters() + 1);
         card.setCardRatingTotal(card.getCardRatingTotal() + rating);
-        card.setUser(null);
-        card.setSubject(null);
         hibernate.flush();
         manager.commit();
         if (card == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
 
-        return card;
+        return "true";
     }
 }

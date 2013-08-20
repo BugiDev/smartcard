@@ -70,13 +70,12 @@ public class SelectUserEdit {
         userModel.add("action", null);
         userModel.add("roleTypeName", null);
 
-        userModel.include("firstName", "lastName", "email", "username", "password", "dailyCounter", "lastLogedIn", "roleTypeName", "action");
+        userModel.include("firstName", "lastName", "email", "username", "password", "lastLogedIn", "roleTypeName", "action");
         userModel.get("firstName").sortable(false);
         userModel.get("lastName").sortable(false);
         userModel.get("email").sortable(false);
         userModel.get("username").sortable(false);
         userModel.get("password").sortable(false);
-        userModel.get("dailyCounter").sortable(false);
         userModel.get("lastLogedIn").sortable(false);
 
         // Get all persons - ask business service to find them (from the database)

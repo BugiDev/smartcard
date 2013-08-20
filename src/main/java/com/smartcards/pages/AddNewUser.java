@@ -125,7 +125,6 @@ public class AddNewUser {
                 newUser.setRoleType(UserType.USER.getCode());
             }
 
-            newUser.setDailyCounter(10);
             newUser.setLastLogedIn(new Date());
             newUser.setUserActive(true);
             newUser.setUserConfirmed(false);
