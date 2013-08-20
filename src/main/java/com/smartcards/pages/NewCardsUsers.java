@@ -167,7 +167,7 @@ public class NewCardsUsers {
             hibernate.update(user);
             hibernate.flush();
             
-            mailZaSlanje = new SendMail("Your account has been created!!!","Thank you for creating an accoutn. Your username is: " + user.getUsername() + "and password is: " + user.getPassword(),user.getEmail());
+            mailZaSlanje = new SendMail("Your account has been created!!!","Thank you for creating an accoutn. Your username is: " + user.getUsername() + " and password is: " + user.getPassword(),user.getEmail());
         } catch (HibernateException e) {
             return this;
         }
