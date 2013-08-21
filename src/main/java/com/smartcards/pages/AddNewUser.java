@@ -78,7 +78,6 @@ public class AddNewUser {
     @Property
     @Inject
     private Session hibernate;
-    @SessionState
     @Property
     private User newUser;
     @Property
@@ -112,7 +111,7 @@ public class AddNewUser {
     public void onSuccess() {
 
         try {
-
+            newUser = new User();
             newUser.setFirstname(firstName);
             newUser.setLastname(lastName);
             newUser.setUsername(username);
