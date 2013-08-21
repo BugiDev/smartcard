@@ -58,7 +58,7 @@ public class AddNewUser {
     @Persist(PersistenceConstants.FLASH)
     @Property
     private String password;
-    @Validate("required, regexp=^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$")
+    @Validate("required")
     @Persist(PersistenceConstants.FLASH)
     @Property
     private String email;
