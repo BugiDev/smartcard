@@ -19,6 +19,10 @@ import org.slf4j.Logger;
  */
 public class QaModule
 {
+    /**
+     * 
+     * @param binder
+     */
     public static void bind(ServiceBinder binder)
     {
         // Bind any services needed by the QA team to produce their reports
@@ -26,6 +30,10 @@ public class QaModule
     }
 
 
+    /**
+     *
+     * @param configuration
+     */
     public static void contributeApplicationDefaults(
             MappedConfiguration<String, Object> configuration)
     {

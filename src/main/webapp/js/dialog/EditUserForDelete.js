@@ -13,7 +13,7 @@ $(document).ready(function() {
         $( "#deleteDialog" ).dialog( "option", "modal", true );
         var userID = $( event.currentTarget ).attr( 'userid' )
         
-        $.get('/smartcards/selectuseredit:selectUser/'+userID, function(data) {
+        $.get(selectUserForDeleteEditURL+userID, function(data) {
             });
     
     });

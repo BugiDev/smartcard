@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.components;
 
 import com.smartcards.util.UserType;
@@ -10,6 +6,8 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 
 /**
+ * Ova komponenta služi za prikazivanje tipa korisnika. Pošto su tipovi sačuvani
+ * kao integer podaci, prevode se u String reprezentaciju i prikazuju.
  *
  * @author Bogdan Begovic
  */

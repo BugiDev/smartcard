@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.pages;
 
 import com.smartcards.entities.Card;
@@ -28,6 +24,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa koja služi za prikaz i selektovanje kartica koji se edituju. Pravo
+ * pristupa imaju samo ADMIN i MODERATOR korisnici. Klasa takođe dodaje i
+ * javascript klasu EditCardForDelete.js kako bi omogućila selekciju korisnika
+ * za brisanje.
  *
  * @author Bogdan Begovic
  */
@@ -60,7 +60,10 @@ public class SelectCardEdit {
     @Component(id = "deleteForm")
     private Form deleteForm;
 
-    // The code
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da kreira i napuni grid sa podacima.
+     */
     void setupRender() {
 
         myModel = beanModelSource.createDisplayModel(Card.class, messages);
@@ -77,11 +80,23 @@ public class SelectCardEdit {
         cards = hibernate.createCriteria(Card.class).add(Restrictions.disjunction().add(Restrictions.eq("cardStatus", CardStatusType.PENDING.getCode())).add(Restrictions.eq("cardStatus", CardStatusType.APROVED.getCode()))).list();
     }
 
+    /**
+     * Metoda kojom se bira entitet za editovanje, a njegov ID prosleđuje se
+     * stranici za editovanje.
+     *
+     * @param cardID
+     * @return Page object
+     */
     public Object onEdit(long cardID) {
         editCardPage.setInitialDataToEdit(cardID);
         return editCardPage;
     }
 
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za brisanje kartica.
+     *
+     * @return istu stranicu (refresh)
+     */
     @CommitAfter
     public Object onSubmitFromDeleteForm() {
         try {
@@ -95,8 +110,12 @@ public class SelectCardEdit {
         return this;
     }
 
+    /**
+     * Metoda kojom se bira entitet za brisanje. Postavlja ID entiteta.
+     *
+     * @param selected
+     */
     public void onSelectCard(long selected) {
         selectedCardID = selected;
-        System.out.println("SELECTED ID: " + selected);
     }
 }

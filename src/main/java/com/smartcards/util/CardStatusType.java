@@ -1,30 +1,30 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.util;
 
 /**
+ * Enum CardStatusType koji predstavlja String reprezentaciju tipova statusa
+ * kartice.
  *
  * @author Bogdan Begovic
  */
 public enum CardStatusType {
 
+    /**
+     * Postavljanje kodova za sve statuse.
+     */
     TRASHED(0),
     PENDING(1),
     APROVED(2);
-    
     private int code;
 
     /*
-     * Private constructor that takes the code and associate it with type of issue.
+     * Privatni konstruktor koji prima kodove i spaja ih sa odgovarajućom String reprezentacijom.
      */
     private CardStatusType(int c) {
         code = c;
     }
 
     /**
-     * Method that gets the code
+     * Metoda koja vraća kod
      *
      * @return code type of long
      */

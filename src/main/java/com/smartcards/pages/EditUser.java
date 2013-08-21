@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.smartcards.pages;
 
 import com.smartcards.entities.User;
@@ -30,6 +26,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
+ * Klasa EditUser koja je zaslužna za prikaz i logiku EditUser strane. Služi za
+ * editovanje korisnika.
  *
  * @author Bogdan
  */
@@ -91,7 +89,11 @@ public class EditUser {
     @SessionState
     @Property
     private User asoUser;
- 
+
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da kreira i napuni listu svih tipova korisnika vrednostima.
+     */
     public void setupRender() {
 
         allRoleTypes = new ArrayList<String>();
@@ -101,6 +103,10 @@ public class EditUser {
         allRoleTypes.add("User");
     }
 
+    /**
+     * Metoda koja handle-uje submit posle uspešne provere na formi. Zaslužna je
+     * za editovanje korisnika i vraćanje poruka o uspešnosti ili grešci.
+     */
     @CommitAfter
     public void onSuccess() {
 
@@ -131,7 +137,7 @@ public class EditUser {
             messageText = messages.get("messageSuccess");
             cssClass = "messageSuccess";
             ajaxResponseRenderer.addRender("messageZone", messageZone);
-            
+
             onSelectedFromResetUser();
 
         } catch (HibernateException e) {
@@ -140,7 +146,13 @@ public class EditUser {
             ajaxResponseRenderer.addRender("messageZone", messageZone);
         }
     }
- 
+
+    /**
+     * Metoda koja handle-uje submit na formi. Zaslužna je za resetovanje
+     * podataka.
+     *
+     * @return istu stranicu (refresh)
+     */
     public Object onSelectedFromResetUser() {
         firstName = null;
         lastName = null;
@@ -153,6 +165,10 @@ public class EditUser {
 
     }
 
+    /**
+     * Metoda kojom se dodaje deo javascript koda zaslužnog za zatvaranje
+     * message komponente.
+     */
     public void onAddJSMessage() {
         javaScriptSupport.addScript(" \n"
                 + "        \n"
@@ -162,8 +178,15 @@ public class EditUser {
                 + "  $(\".close_btn_message\").hide(); \n"
                 + "        });");
     }
-    
+
+    /**
+     * Metoda koja, pri učitavanju stranice, uzima entitet za prosleđeni ID i
+     * podešava početne podatke koji se edituju.
+     *
+     * @param userID
+     */
     public void setInitialDataToEdit(long userID) {
+
         newUser = (User) hibernate.createCriteria(User.class).add(Restrictions.eq("userID", userID)).uniqueResult();
 
         firstName = newUser.getFirstname();
@@ -183,5 +206,4 @@ public class EditUser {
             selectRoleType = "User";
         }
     }
-    
 }

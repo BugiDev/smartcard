@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.smartcards.entities;
 
 import java.io.Serializable;
@@ -17,7 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
- *
+ * Klasa Subject predstavlja entitet koji će biti sačuvan u bazi.
+ * Implementira interface Serializable koji je neophodan za serializaciju podataka pri čuvanju i čitanju podataka iz baze.
  * @author Bogdan Begovic
  */
 @Entity
@@ -62,9 +60,25 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<Card> card;
 
+    /**
+     * Prazan konstruktor
+     */
     public User() {
     }
 
+    /**
+     * Konstruktor koji prima podatke.
+     * @param username
+     * @param password
+     * @param email
+     * @param firstname
+     * @param lastname
+     * @param birthday
+     * @param roleType
+     * @param userConfirmed
+     * @param lastLogedIn
+     * @param userActive
+     */
     public User(String username, String password, String email, String firstname, String lastname, Date birthday, int roleType, boolean userConfirmed, Date lastLogedIn, boolean userActive) {
         this.username = username;
         this.password = password;
@@ -106,6 +120,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the userID
      */
     public Long getUserID() {
@@ -113,6 +128,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param userID the userID to set
      */
     public void setUserID(Long userID) {
@@ -120,6 +136,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the username
      */
     public String getUsername() {
@@ -127,6 +144,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param username the username to set
      */
     public void setUsername(String username) {
@@ -134,6 +152,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the password
      */
     public String getPassword() {
@@ -141,6 +160,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param password the password to set
      */
     public void setPassword(String password) {
@@ -148,6 +168,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the email
      */
     public String getEmail() {
@@ -155,6 +176,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param email the email to set
      */
     public void setEmail(String email) {
@@ -162,6 +184,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the firstname
      */
     public String getFirstname() {
@@ -169,6 +192,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param firstname the firstname to set
      */
     public void setFirstname(String firstname) {
@@ -176,6 +200,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the lastname
      */
     public String getLastname() {
@@ -183,6 +208,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param lastname the lastname to set
      */
     public void setLastname(String lastname) {
@@ -190,6 +216,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the birthday
      */
     public Date getBirthday() {
@@ -197,6 +224,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param birthday the birthday to set
      */
     public void setBirthday(Date birthday) {
@@ -204,6 +232,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the roleType
      */
     public int getRoleType() {
@@ -211,6 +240,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param roleType the roleType to set
      */
     public void setRoleType(int roleType) {
@@ -218,6 +248,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the userConfirmed
      */
     public boolean getUserConfirmed() {
@@ -225,6 +256,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param userConfirmed the userConfirmed to set
      */
     public void setUserConfirmed(boolean userConfirmed) {
@@ -232,6 +264,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the lastLogedIn
      */
     public Date getLastLogedIn() {
@@ -239,6 +272,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param lastLogedIn the lastLogedIn to set
      */
     public void setLastLogedIn(Date lastLogedIn) {
@@ -246,6 +280,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the card
      */
     public Set<Card> getCard() {
@@ -253,6 +288,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param card the card to set
      */
     public void setCard(Set<Card> card) {
@@ -260,6 +296,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the userActive
      */
     public boolean isUserActive() {
@@ -267,6 +304,7 @@ public class User implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param userActive the userActive to set
      */
     public void setUserActive(boolean userActive) {

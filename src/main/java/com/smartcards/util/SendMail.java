@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.smartcards.util;
 
 import javax.mail.*;
@@ -9,7 +6,7 @@ import javax.mail.internet.*;
 import java.util.Properties;
 
 /**
- *
+ * Klasa SendMail koja je zaslužna za slanje email-ova
  * @author Bogdan Begovic
  */
 
@@ -22,6 +19,12 @@ private boolean poslat;
             d_port  = "465";
             
 
+    /**
+     * Metoda kojom se šalje mail. Prima parametre subject (zaglavlje), tekst i adresu kome se šalje email.
+     * @param subject
+     * @param text
+     * @param mailTo
+     */
     public SendMail(String subject, String text, String mailTo)
     {
         Properties props = new Properties();
@@ -58,6 +61,7 @@ private boolean poslat;
     }
 
     /**
+     * Standardni getter.
      * @return the poslat
      */
     public boolean isPoslat() {
@@ -65,6 +69,7 @@ private boolean poslat;
     }
 
     /**
+     * Standardni setter.
      * @param poslat the poslat to set
      */
     public void setPoslat(boolean poslat) {

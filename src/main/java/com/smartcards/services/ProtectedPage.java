@@ -12,7 +12,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *
+ * Interface za dodavanje tipova rola
  * @author Bogdan Begovic
  */
 @Target(ElementType.TYPE)
@@ -20,5 +20,9 @@ import java.lang.annotation.Target;
 @Documented
 public @interface ProtectedPage {
 
+    /**
+     * Metoda koja gettuje role.
+     * @return
+     */
     public UserType[] getRoles() default {};
 }

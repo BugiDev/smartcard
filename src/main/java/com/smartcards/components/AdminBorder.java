@@ -18,10 +18,13 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 
 /**
- * Layout component for pages of application smartcards.
+ * Layout komponenta koja predstavlja kostur svih stranica. Odgovorna je za
+ * menije i za navigaciju izmedju stranica.
+ *
+ * @author Bogdan Begovic
  */
 @Import(stylesheet = {"context:css/layout.css", "context:css/tooltip.css"},
-library = {"context:js/hideshow.js", "context:js/jquery.tablesorter.min.js", "context:js/jquery.equalHeight.js", "context:js/jquery.index.documentLoad.js"})
+        library = {"context:js/hideshow.js", "context:js/jquery.tablesorter.min.js", "context:js/jquery.equalHeight.js", "context:js/jquery.index.documentLoad.js", "context:js/Constants.js"})
 public class AdminBorder {
 
     @SessionState
@@ -57,6 +60,12 @@ public class AdminBorder {
     @InjectPage
     private YourProfile yourProfile;
 
+    /**
+     * Metoda koja proverava da li ulogovani korisnik ima rolu admin i u
+     * zavisnosti od toga, vraća boolean vrednost.
+     *
+     * @return boolean
+     */
     public boolean getTestIsAdmin() {
         if (asoUser.getRoleType() == UserType.ADMIN.getCode()) {
             return true;
@@ -64,6 +73,12 @@ public class AdminBorder {
         return false;
     }
 
+    /**
+     * Metoda koja proverava da li ulogovani korisnik ima rolu admin ili
+     * moderator i u zavisnosti od toga, vraća boolean vrednost.
+     *
+     * @return boolean
+     */
     public boolean getTestIsAdminOrModerator() {
         if ((asoUser.getRoleType() == UserType.ADMIN.getCode()) || (asoUser.getRoleType() == UserType.MODERATOR.getCode())) {
             return true;
@@ -71,6 +86,12 @@ public class AdminBorder {
         return false;
     }
 
+    /**
+     * Metoda koja proverava da li ulogovani korisnik ima rolu moderator i u
+     * zavisnosti od toga, vraća boolean vrednost.
+     *
+     * @return boolean
+     */
     public boolean getTestIsModerator() {
         if (asoUser.getRoleType() == UserType.MODERATOR.getCode()) {
             return true;
@@ -78,11 +99,25 @@ public class AdminBorder {
         return false;
     }
 
+    /**
+     * Metoda koja služi da izloguje korisnika, odnosno da obriše sačuvanog
+     * korisnika u sesiji i da redirect-uje na login stranu.
+     *
+     * @return
+     */
     public Object onLogout() {
         asoUser = null;
         return login;
     }
 
+    /**
+     * Metoda koja handle-uje click iz aside menija. U zavisnosti od toga koji
+     * parametar je prosledjen (ime stranice), redirektuje korisnika na tu
+     * stranicu.
+     *
+     * @param menuType type of String
+     * @return Page object
+     */
     public Object onAsideMenuClick(String menuType) {
         if (menuType.equalsIgnoreCase("newCard")) {
 
@@ -115,6 +150,11 @@ public class AdminBorder {
         return null;
     }
 
+    /**
+     * Metoda koja redirect-uje na home stranicu.
+     *
+     * @return Page object
+     */
     public Object onGoHome() {
         return newCardsUsers;
     }

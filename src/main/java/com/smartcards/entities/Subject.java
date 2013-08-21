@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.smartcards.entities;
 
 import java.io.Serializable;
@@ -15,7 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
- *
+ * Klasa Subject predstavlja entitet koji će biti sačuvan u bazi.
+ * Implementira interface Serializable koji je neophodan za serializaciju podataka pri čuvanju i čitanju podataka iz baze.
  * @author Bogdan Begovic
  */
 @Entity
@@ -35,6 +33,9 @@ public class Subject implements Serializable {
     @OneToMany(mappedBy = "subject")
     private Set<Card> card;
 
+    /**
+     *
+     */
     public Subject() {
     }
 
@@ -64,6 +65,7 @@ public class Subject implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the subjectID
      */
     public Long getSubjectID() {
@@ -71,6 +73,7 @@ public class Subject implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param subjectID the subjectID to set
      */
     public void setSubjectID(Long subjectID) {
@@ -78,6 +81,7 @@ public class Subject implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the subjectName
      */
     public String getSubjectName() {
@@ -85,6 +89,7 @@ public class Subject implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param subjectName the subjectName to set
      */
     public void setSubjectName(String subjectName) {
@@ -92,6 +97,7 @@ public class Subject implements Serializable {
     }
 
     /**
+     * Standardni getter.
      * @return the card
      */
     public Set<Card> getCard() {
@@ -99,6 +105,7 @@ public class Subject implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param card the card to set
      */
     public void setCard(Set<Card> card) {
@@ -113,6 +120,7 @@ public class Subject implements Serializable {
     }
 
     /**
+     * Standardni setter.
      * @param subjectDeleted the subjectDeleted to set
      */
     public void setSubjectDeleted(boolean subjectDeleted) {

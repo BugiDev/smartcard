@@ -5,7 +5,6 @@
 package com.smartcards.pages;
 
 import com.smartcards.components.ShowRoleType;
-import com.smartcards.entities.Subject;
 import com.smartcards.entities.User;
 import com.smartcards.services.ProtectedPage;
 import com.smartcards.util.UserType;
@@ -29,7 +28,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
+ * Klasa koja služi za prikaz i selektovanje korisnika koji se edituju.
+ * Pravo pristupa imaju samo ADMIN korisnici. 
+ * Klasa takođe dodaje i javascript klasu EditUserForDelete.js kako bi omogućila selekciju korisnika za brisanje.
  * @author Bogdan Begovic
  */
 @ProtectedPage(getRoles = {UserType.ADMIN})
@@ -63,7 +64,10 @@ public class SelectUserEdit {
     @InjectPage
     private EditUser editUserPage;
 
-    // The code
+    /*
+     * Metoda koja se poziva pri svakom renderovanju strane.
+     * Koristi se da kreira i napuni grid sa podacima.
+     */
     void setupRender() {
 
         userModel = beanModelSource.createDisplayModel(User.class, messages);
@@ -78,17 +82,25 @@ public class SelectUserEdit {
         userModel.get("password").sortable(false);
         userModel.get("lastLogedIn").sortable(false);
 
-        // Get all persons - ask business service to find them (from the database)
-
         users = hibernate.createCriteria(User.class).add(Restrictions.eq("userActive", true)).list();
 
     }
 
+    /**
+     * Metoda kojom se bira entitet za editovanje, a njegov ID prosleđuje se stranici za editovanje.
+     * @param userID
+     * @return Page object
+     */
     public Object onEditUser(long userID) {
         editUserPage.setInitialDataToEdit(userID);
         return editUserPage;
     }
 
+    /**
+     *  Metoda koja handle-uje submit na formi.
+     *  Zaslužna je za brisanje korisnika.
+     * @return istu stranicu (refresh)
+     */
     @CommitAfter
     public Object onSubmitFromDeleteForm() {
         try {
@@ -102,8 +114,12 @@ public class SelectUserEdit {
         return this;
     }
 
+    /**
+     * Metoda kojom se bira entitet za brisanje. 
+     * Postavlja ID entiteta.
+     * @param selected
+     */
     public void onSelectUser(long selected) {
         selectedUserID = selected;
-        System.out.println("SELECTED ID: " + selected);
     }
 }
